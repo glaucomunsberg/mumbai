@@ -11,6 +11,11 @@
 # generated files
 bin/
 gen/
+android/.gradle
+android/mumbai/Mumbai/build/
+android/mumbai/.gradle/
+android/mumbai/gradle
+android/mumbai/.idea/
 
 # Local configuration file (sdk path, etc)
 local.properties

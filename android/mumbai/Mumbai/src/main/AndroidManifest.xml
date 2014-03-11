@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_paraformalidade_icon"
         android:label="@string/develop_name"
-        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+        android:theme="@style/Theme.Base.AppCompat.Light.DarkActionBar">
         <activity
             android:name="com.paraformalidade.mumbai.Mumbai"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.paraformalidade.mumabai.menu"
+            android:name="com.paraformalidade.mumbai.menu"
             android:label="@string/activity_menu" >
         </activity>
 
