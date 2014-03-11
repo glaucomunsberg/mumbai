@@ -10,4 +10,11 @@
     <string name="menu_configuration">Configurações</string>
     <string name="menu_location">Localização Atual</string>
     <string name="activity_menu">Menu</string>
+
+
+
+    <string-array name="planets_array">
+        <item>Oie</item>
+        <item>oiE</item>
+    </string-array>
 </resources>
