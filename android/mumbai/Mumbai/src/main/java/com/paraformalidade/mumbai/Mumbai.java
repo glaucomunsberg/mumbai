@@ -3,10 +3,13 @@ package com.paraformalidade.mumbai;
 import com.paraformalidade.mumbai.util.SystemUiHider;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.MenuInflater;
@@ -131,6 +134,13 @@ public class Mumbai extends Activity {
         delayedHide(100);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent myIntent = new Intent(this, Settings.class);
+        startActivity(myIntent);
+
+        return super.onOptionsItemSelected(item);
+    }
 
     /**
      * Touch listener to use for in-layout UI controls to delay hiding the

@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_paraformalidade_icon"
         android:label="@string/develop_name"
-        android:theme="@style/Theme.Base.AppCompat.Light.DarkActionBar">
+        android:theme="@style/Theme.Base.AppCompat.Light.DarkActionBar" >
         <activity
             android:name="com.paraformalidade.mumbai.Mumbai"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -14,6 +14,7 @@
             android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -21,7 +22,15 @@
             android:name="com.paraformalidade.mumbai.menu"
             android:label="@string/activity_menu" >
         </activity>
-
+        <activity
+            android:name="com.paraformalidade.mumbai.Settings"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="com.paraformalidade.mumbai.Mumbai">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.paraformalidade.mumbai.Mumbai">
+            </meta-data>
+        </activity>
     </application>
 
 </manifest>
