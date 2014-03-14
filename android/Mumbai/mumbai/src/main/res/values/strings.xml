@@ -5,5 +5,20 @@
     <string name="menu_search">Procurar</string>
     <string name="menu_location">Localização Atual</string>
     <string name="menu_configuration">Configuração</string>
-    <string name="a"> </string>
+
+    <string name="settings_categoryAccount">Conta</string>
+    <string name="settings_categoryAdvance">Avançado</string>
+    <string name="settings_categoryAbout">Sobre</string>
+    <string name="settings_accountDefault">Usuário</string>
+    <string name="settings_accountDefaultType">Nenhuma Conta</string>
+    <string name="settings_accounts">Contas</string>
+    <string name="settings_sync">Sincronização</string>
+    <string name="settings_syncSumm">Automático</string>
+    <string name="settings_notif">Notificação</string>
+    <string name="settings_notifSumm">Mostrar no Sistema</string>
+    <string name="settings_highResolution">Alta Resolução</string>
+    <string name="settings_highResolutionSumm">Imagens com maior definição</string>
+    <string name="settings_aboutVersion">0.2</string>
+    <string name="settings_aboutDevelopers">Glauco Munsberg</string>
+
 </resources>

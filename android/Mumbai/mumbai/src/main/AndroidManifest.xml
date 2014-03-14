@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name="com.plataformaparaformal.Mumbai.SettingsActivity"
-            android:label="@string/title_activity_settings"
+            android:label="@string/menu_configuration"
             android:parentActivityName="com.plataformaparaformal.Mumbai.PrincipalActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
