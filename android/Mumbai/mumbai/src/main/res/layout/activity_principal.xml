@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_strong"
+    android:theme="@style/Theme.AppCompat.Light"
+    tools:context="com.plataformaparaformal.Mumbai.PrincipalActivity">
+
+    <LinearLayout android:id="@+id/fullscreen_content"
+        style="?metaButtonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@color/gray"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+    </LinearLayout>
+
+</FrameLayout>

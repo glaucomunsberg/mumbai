@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mumbai</string>
+    <string name="menu_create">Criar</string>
+    <string name="menu_search">Procurar</string>
+    <string name="menu_location">Localização Atual</string>
+    <string name="menu_configuration">Configuração</string>
+    <string name="a"> </string>
+</resources>
