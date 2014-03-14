@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:Mumbai="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.paraformalidade.mumbai.menu" >
+    tools:context="com.paraformalidade.mumbai.menu_general" >
 
 
     <item
@@ -13,7 +13,7 @@
     </item>
     <item
         android:id="@+id/action_search"
-        android:icon="@drawable/abc_ic_search"
+        android:icon="@drawable/ic_action_labels"
         android:title="@string/menu_search"
         android:showAsAction="always|collapseActionView">
     </item>
