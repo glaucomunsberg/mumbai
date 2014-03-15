@@ -39,11 +39,15 @@
         <activity
             android:name="com.plataformaparaformal.Mumbai.ImageFullActivity"
             android:label="@string/imageFull_image"
-            android:parentActivityName="com.plataformaparaformal.Mumbai.SeeParaformalidadeActivity">
+            android:parentActivityName="com.plataformaparaformal.Mumbai.SeeParaformalidadeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.plataformalparaformal.Mumbai.SeeParaformalidadeActivity">
+                android:value="com.plataformalparaformal.Mumbai.SeeParaformalidadeActivity" >
             </meta-data>
+        </activity>
+        <activity
+            android:name="com.plataformaparaformal.Mumbai.editParaformalidadeActivity"
+            android:label="@string/title_activity_edit_paraformalidade" >
         </activity>
     </application>
 

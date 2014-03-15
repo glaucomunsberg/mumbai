@@ -6,7 +6,6 @@
     <string name="menu_search">Procurar</string>
     <string name="menu_location">Localização Atual</string>
     <string name="menu_configuration">Configuração</string>
-
     <string name="settings_categoryAccount">Conta</string>
     <string name="settings_categoryAdvance">Avançado</string>
     <string name="settings_categoryAbout">Sobre</string>
@@ -31,7 +30,6 @@
     <string name="settings_accountFacebookDetail">Não Vinculado</string>
     <string name="settings_accountTwitter">Twitter API Account</string>
     <string name="settings_accountTwitterDetail">Não Vinculado</string>
-
     <string name="see_date">10-12-2013</string>
     <string name="see_paraformaliade">Paraformalidade</string>
     <string name="see_activity">Atividade Registrada</string>
@@ -41,4 +39,8 @@
     <string name="see_description">Cena Tal com imagen tal</string>
     <string name="see_author">Autor fulano</string>
     <string name="imageFull_image">Visualizador de Imagem</string>
+    <string name="title_activity_edit_paraformalidade">editParaformalidadeActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>
