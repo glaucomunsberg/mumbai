@@ -10,4 +10,36 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+    <string-array name="see_activitiesTipes">
+        <item>Comércio</item>
+        <item>Abandono</item>
+        <item>Vazio</item>
+    </string-array>
+    <string-array name="see_equimentMobilitiesTypes" >
+        <item>Móvel</item>
+        <item>Fixo</item>
+        <item>Ambulante</item>
+    </string-array>
+    <string-array name="see_shiftsTypes">
+        <item>Tarde</item>
+        <item>Manhã</item>
+        <item>Noite</item>
+        <item>Madrugada</item>
+    </string-array>
+    <string-array name="see_sensesTypes">
+        <item>Sons</item>
+        <item>Textura</item>
+        <item>Cheiro</item>
+    </string-array>
+    <string-array name="see_localizationsTypes">
+        <item>Praça</item>
+        <item>Canteiro</item>
+        <item>Rua</item>
+        <item>Esquina</item>
+    </string-array>
+    <string-array name="see_registredAmountTypes">
+        <item>Único</item>
+        <item>Grupo</item>
+    </string-array>
+
 </resources>

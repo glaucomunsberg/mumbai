@@ -18,6 +18,8 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
+import android.view.MenuItem;
+import android.widget.EditText;
 
 
 import java.util.List;
@@ -34,19 +36,24 @@ import java.util.List;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SettingsActivity extends PreferenceActivity {
-    /**
-     * Determines whether to always show the simplified settings UI, where
-     * settings are presented in a single list. When false, settings are shown
-     * as a master/detail two-pane view on tablets. When true, a single pane is
-     * shown on tablets.
-     */
-    public static final String INTENT_RESULT_LOGOUT = "logout";
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
         this.addPreferencesFromResource(R.xml.activity_settings);
+
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.settings_compilation){
+            item.setEnabled(false);
+            EditText text = (EditText) item;
+            text.setFocusable(false);
+            text.setEnabled(false);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

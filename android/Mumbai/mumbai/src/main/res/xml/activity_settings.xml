@@ -2,17 +2,35 @@
 <PreferenceScreen
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:title="@string/menu_configuration"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
         android:title="@string/settings_categoryAccount">
-        <ListPreference
-            android:key="settings_Account"
+        <PreferenceScreen
             android:title="@string/settings_accountDefault"
             android:summary="@string/settings_accountDefaultType"
-            android:dialogTitle="@string/settings_accounts"
-            android:entries="@array/settings_accountsOptions"
-            android:entryValues="@array/settings_accountsValues">
-        </ListPreference>
+            android:persistent="false">
+            <EditTextPreference
+                android:id="@+id/setting_accountGoogle"
+                android:title="@string/settings_accountGoogle"
+                android:summary="@string/settings_accountGoogleDetail"
+                android:editable="false">
+            </EditTextPreference>
+            <EditTextPreference
+                android:id="@+id/settings_developer"
+                android:title="@string/settings_accountFacebook"
+                android:summary="@string/settings_accountFacebookDetail"
+                android:focusable="false"
+                android:editable="false">
+            </EditTextPreference>
+            <EditTextPreference
+                android:id="@+id/settings_compilation"
+                android:title="@string/settings_accountTwitter"
+                android:summary="@string/settings_accountTwitterDetail"
+                android:inputType="none"
+                android:editable="false">
+            </EditTextPreference>
+        </PreferenceScreen>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/settings_categoryAdvance">
@@ -39,9 +57,28 @@
         android:title="@string/settings_categoryAbout">
         <PreferenceScreen
             android:title="@string/settings_aboutVersion"
-            android:summary="@string/settings_aboutDevelopers"
+            android:summary="@string/settings_aboutVersionInt"
             android:persistent="false">
-
+            <EditTextPreference
+                android:id="@+id/settings_version"
+                android:title="@string/settings_aboutVersion"
+                android:summary="@string/settings_aboutVersionInt"
+                android:editable="false">
+            </EditTextPreference>
+            <EditTextPreference
+                android:id="@+id/settings_developer"
+                android:title="@string/settings_aboutDeveloper"
+                android:summary="@string/settings_aboutDevelopers"
+                android:focusable="false"
+                android:editable="false">
+            </EditTextPreference>
+            <EditTextPreference
+                android:id="@+id/settings_compilation"
+                android:title="@string/settings_compilation"
+                android:summary="@string/settings_compilationDetail"
+                android:inputType="none"
+                android:editable="false">
+            </EditTextPreference>
         </PreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -21,10 +21,28 @@
         <activity
             android:name="com.plataformaparaformal.Mumbai.SettingsActivity"
             android:label="@string/menu_configuration"
-            android:parentActivityName="com.plataformaparaformal.Mumbai.PrincipalActivity">
+            android:parentActivityName="com.plataformaparaformal.Mumbai.PrincipalActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.plataformaparaformal.Mumbai.PrincipalActivity">
+                android:value="com.plataformaparaformal.Mumbai.PrincipalActivity" >
+            </meta-data>
+        </activity>
+        <activity
+            android:name="com.plataformaparaformal.Mumbai.SeeParaformalidadeActivity"
+            android:label="@string/see_paraformaliade"
+            android:parentActivityName="com.plataformaparaformal.Mumbai.PrincipalActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.plataformaparaformal.Mumbai.PrincipalActivity" >
+            </meta-data>
+        </activity>
+        <activity
+            android:name="com.plataformaparaformal.Mumbai.ImageFullActivity"
+            android:label="@string/imageFull_image"
+            android:parentActivityName="com.plataformaparaformal.Mumbai.SeeParaformalidadeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.plataformalparaformal.Mumbai.SeeParaformalidadeActivity">
             </meta-data>
         </activity>
     </application>

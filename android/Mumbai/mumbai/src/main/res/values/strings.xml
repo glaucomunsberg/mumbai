@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Mumbai</string>
     <string name="menu_create">Criar</string>
     <string name="menu_search">Procurar</string>
@@ -9,8 +10,8 @@
     <string name="settings_categoryAccount">Conta</string>
     <string name="settings_categoryAdvance">Avançado</string>
     <string name="settings_categoryAbout">Sobre</string>
-    <string name="settings_accountDefault">Usuário</string>
-    <string name="settings_accountDefaultType">Nenhuma Conta</string>
+    <string name="settings_accountDefault">\@GlaucMunsberg</string>
+    <string name="settings_accountDefaultType">Google</string>
     <string name="settings_accounts">Contas</string>
     <string name="settings_sync">Sincronização</string>
     <string name="settings_syncSumm">Automático</string>
@@ -18,7 +19,26 @@
     <string name="settings_notifSumm">Mostrar no Sistema</string>
     <string name="settings_highResolution">Alta Resolução</string>
     <string name="settings_highResolutionSumm">Imagens com maior definição</string>
-    <string name="settings_aboutVersion">0.2</string>
-    <string name="settings_aboutDevelopers">Glauco Munsberg</string>
+    <string name="settings_aboutVersion">Versão</string>
+    <string name="settings_aboutVersionInt">0.2</string>
+    <string name="settings_aboutDeveloper">Developer</string>
+    <string name="settings_aboutDevelopers">Glauco Roberto Munsberg</string>
+    <string name="settings_compilation">Compilação</string>
+    <string name="settings_compilationDetail">02/02/2012 21:14 A98eb19Fd0</string>
+    <string name="settings_accountGoogle">Google Account</string>
+    <string name="settings_accountGoogleDetail">Conta Vinculada</string>
+    <string name="settings_accountFacebook">Facebook Account</string>
+    <string name="settings_accountFacebookDetail">Não Vinculado</string>
+    <string name="settings_accountTwitter">Twitter API Account</string>
+    <string name="settings_accountTwitterDetail">Não Vinculado</string>
 
+    <string name="see_date">10-12-2013</string>
+    <string name="see_paraformaliade">Paraformalidade</string>
+    <string name="see_activity">Atividade Registrada</string>
+    <string name="see_edit">Editar</string>
+    <string name="see_share">Compartilhar</string>
+    <string name="see_settings">Configuração</string>
+    <string name="see_description">Cena Tal com imagen tal</string>
+    <string name="see_author">Autor fulano</string>
+    <string name="imageFull_image">Visualizador de Imagem</string>
 </resources>
