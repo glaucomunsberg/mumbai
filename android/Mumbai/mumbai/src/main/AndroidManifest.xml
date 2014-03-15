@@ -47,7 +47,12 @@
         </activity>
         <activity
             android:name="com.plataformaparaformal.Mumbai.editParaformalidadeActivity"
-            android:label="@string/title_activity_edit_paraformalidade" >
+            android:label="@string/title_activity_edit_paraformalidade"
+            android:parentActivityName="com.plataformaparaformal.Mumbai.SeeParaformalidadeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.plataformaparaformal.Mumbai.SeeParaformalidadeActivity">
+            </meta-data>
         </activity>
     </application>
 

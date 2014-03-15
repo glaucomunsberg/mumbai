@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.plataformaparaformal.Mumbai.editParaformalidadeActivity" >
     
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item android:id="@+id/edit_send"
+        android:title="@string/edit_send"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="always|collapseActionView" />
+    <item android:id="@+id/edit_settings"
+        android:title="@string/edit_settings"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
 </menu>

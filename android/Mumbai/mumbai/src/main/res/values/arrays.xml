@@ -41,5 +41,17 @@
         <item>Único</item>
         <item>Grupo</item>
     </string-array>
-
+	<string-array name="see_positionBodyTypes">
+        <item>Sentado</item>
+        <item>Em pé</item>
+    </string-array>
+    <string-array name="see_numberBodyTypes">
+        <item>Sentado</item>
+        <item>Em pé</item>
+    </string-array>
+    <string-array name="see_equipmentScaleTypes">
+        <item>Pequeno</item>
+        <item>Médio</item>
+        <item>Grande</item>
+    </string-array>
 </resources>

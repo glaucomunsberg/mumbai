@@ -1,6 +1,8 @@
 package com.plataformaparaformal.Mumbai;
 
+import android.R;
 import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +14,7 @@ public class editParaformalidadeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_paraformalidade);
+
     }
 
 
@@ -29,8 +32,15 @@ public class editParaformalidadeActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        Intent myIntent;
+        
+        switch(id){
+        	case R.id.edit_settings:
+        		myIntent = new Intent(this, EditParaformalidadeActivity.class);
+                startActivity(myIntent);
+                break;
+        	case R.id.edit_send:
+        		
         }
         return super.onOptionsItemSelected(item);
     }

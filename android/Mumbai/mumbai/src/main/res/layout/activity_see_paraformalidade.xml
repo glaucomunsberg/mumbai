@@ -18,7 +18,7 @@
                 android:layout_gravity="center"
                 android:layout_span="2"
                 android:scaleType="center"
-                android:contentDescription="@string/abc_action_bar_home_description"
+                android:contentDescription="@string/see_imageDetail"
                 android:minHeight="150dp"
                 android:minWidth="150dp"
                 android:src="@drawable/ic_paraformalidade">
@@ -29,7 +29,7 @@
             <EditText
                 android:id="@+id/see_description"
                 android:focusable="false"
-                android:editable="false"
+                android:inputType="text"
                 android:width="@dimen/abc_config_prefDialogWidth"
                 android:layout_height="match_parent"
                 android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
         </TableRow>
         <TableRow>
             <Spinner
-                android:id="@+id/see_numType"
+                android:id="@+id/see_registredAmountType"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_span="2"
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_span="2"
-                android:entries="@array/see_shiftsTypes">
+                android:entries="@array/see_shiftsTypessee_shiftsTypessee_shiftsTypes">
             </Spinner>
         </TableRow>
         <TableRow>
@@ -103,9 +103,8 @@
                 android:inputType="date"
                 android:text="@string/see_author"
                 android:ems="10"
-                android:enabled="false"
+                android:enabled="text"
                 android:textIsSelectable="false"
-                android:editable="false"
                 />
         </TableRow>
         <TableRow>
@@ -118,7 +117,6 @@
                 android:ems="10"
                 android:enabled="false"
                 android:textIsSelectable="false"
-                android:editable="false"
                 />
         </TableRow>
     </TableLayout>

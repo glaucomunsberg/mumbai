@@ -1,5 +1,6 @@
 package com.plataformaparaformal.Mumbai;
 
+import android.R;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class SeeParaformalidadeActivity extends ActionBarActivity {
         spinner = (Spinner) findViewById(R.id.see_senseType);
         spinner.setEnabled(false);
 
-        spinner = (Spinner) findViewById(R.id.see_numType);
+        spinner = (Spinner) findViewById(R.id.see_registredAmountType);
         spinner.setEnabled(false);
 
         return true;
@@ -66,6 +67,10 @@ public class SeeParaformalidadeActivity extends ActionBarActivity {
 
             case R.id.see_settings:
                 myIntent = new Intent(this, SettingsActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.see_edit:
+        		myIntent = new Intent(this, EditParaformalidadeActivity.class);
                 startActivity(myIntent);
                 break;
 
