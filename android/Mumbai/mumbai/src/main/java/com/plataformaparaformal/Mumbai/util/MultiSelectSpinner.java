@@ -1,4 +1,4 @@
-package com.paraformaparaformal.Mumbai.util;
+package com.plataformaparaformal.Mumbai.util;
 
 /*
  * Copyright (C) 2012 Kris Wong
@@ -15,9 +15,6 @@ package com.paraformaparaformal.Mumbai.util;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.multiselectspinner.widget;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;

@@ -2,20 +2,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent">
-    <TableLayout 
-   		android:layout_width="wrap_parent"
-   		android:layout_height="wrap_parent"
-   		android:shrinkColumns="0"
-   		android:stretchColumns="0,1">
-
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="0"
+        android:stretchColumns="0">
         <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
             <ImageView
                 android:id="@+id/edit_img"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_span="2"
                 android:scaleType="center"
@@ -35,7 +33,8 @@
                 android:text="@string/edit_btnUpload">
             </Button>
         </TableRow>
-        <TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <EditText
                 android:id="@+id/edit_description"
                 android:focusable="false"
@@ -48,7 +47,8 @@
                 android:text="@string/edit_description">
             </EditText>
         </TableRow>
-        <TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <Spinner
                 android:id="@+id/edit_activityType"
                 android:layout_width="fill_parent"
@@ -58,7 +58,7 @@
                 android:prompt="@string/see_edit">
             </Spinner>
         </TableRow>
-        <TableRow>
+        <TableRow android:layout_width="match_parent">
             <Spinner
                 android:id="@+id/edit_siftType"
                 android:layout_width="fill_parent"
@@ -122,26 +122,34 @@
                 android:entries="@array/see_equimentMobilitiesTypes">
             </Spinner>
         </TableRow>
-        <TableRow
-            android:id="@+id/edit_sensesType"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+        <TableRow>
+            <com.plataformaparaformal.Mumbai.util.MultiSelectSpinner
+                android:id="@+id/edit_sensesType"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+            </com.plataformaparaformal.Mumbai.util.MultiSelectSpinner>
         </TableRow>
-        <TableRow
-            android:id="@+id/edit_environmentalConditionsType"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+        <TableRow>
+            <com.plataformaparaformal.Mumbai.util.MultiSelectSpinner
+                android:id="@+id/edit_environmentalConditionsType"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+            </com.plataformaparaformal.Mumbai.util.MultiSelectSpinner>
         </TableRow>
-        <TableRow
-            android:id="@+id/edit_instalationEqumentType"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+        <TableRow>
+            <com.plataformaparaformal.Mumbai.util.MultiSelectSpinner
+                android:id="@+id/edit_equipmentInstalation"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+            </com.plataformaparaformal.Mumbai.util.MultiSelectSpinner>
         </TableRow>
-        <TableRow
-            android:id="@+id/edit_climateType"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+        <TableRow>
+            <com.plataformaparaformal.Mumbai.util.MultiSelectSpinner
+                android:id="@+id/edit_climateType"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+            </com.plataformaparaformal.Mumbai.util.MultiSelectSpinner>
         </TableRow>
     </TableLayout>
-    
 </ScrollView>

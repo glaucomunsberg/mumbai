@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Mumbai</string>
     <string name="menu_create">Criar</string>
     <string name="menu_search">Procurar</string>
@@ -30,7 +31,7 @@
     <string name="settings_accountTwitter">Twitter API Account</string>
     <string name="settings_accountTwitterDetail">Não Vinculado</string>
     <string name="see_imageDetail">Imagem Exibição</string>
-    <string name="see_date">10&#8211;12&#8211;2013</string>
+    <string name="see_date">10–12–2013</string>
     <string name="see_paraformaliade">Paraformalidade</string>
     <string name="see_activity">Atividade Registrada</string>
     <string name="see_edit">Editar</string>
@@ -39,12 +40,14 @@
     <string name="see_description">Cena Tal com imagen tal</string>
     <string name="see_author">fulano da silva</string>
     <string name="imageFull_image">Visuedit_btnUploadedit_btnUploadalizador de Imagem</string>
+    <string name="edit_label">Paraformalidade</string>
     <string name="edit_imgDetail">Detalhes da Imagem</string>
     <string name="edit_btnUpload">Carregar Image</string>
     <string name="edit_description">Descrição</string>
     <string name="edit_send">Enviar</string>
     <string name="edit_settings">Configurações</string>
-    <string name="title_activity_edit_paraformalidade">editParaformalidadeActivity</string>
+    <string name="title_activity_see_paraformalidade">SeeParaformalidadeActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
 </resources>

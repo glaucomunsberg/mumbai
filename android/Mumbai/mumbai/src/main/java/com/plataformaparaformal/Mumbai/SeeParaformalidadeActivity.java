@@ -1,6 +1,5 @@
 package com.plataformaparaformal.Mumbai;
 
-import android.R;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -24,7 +23,6 @@ public class SeeParaformalidadeActivity extends ActionBarActivity {
          * HERE I NEED POST IMAGE OPENING WHIT ImageFullActivity
          */
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,8 +52,6 @@ public class SeeParaformalidadeActivity extends ActionBarActivity {
         return true;
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -70,7 +66,7 @@ public class SeeParaformalidadeActivity extends ActionBarActivity {
                 startActivity(myIntent);
                 break;
             case R.id.see_edit:
-        		myIntent = new Intent(this, EditParaformalidadeActivity.class);
+                myIntent = new Intent(this, EditParaformalidadeActivity.class);
                 startActivity(myIntent);
                 break;
 

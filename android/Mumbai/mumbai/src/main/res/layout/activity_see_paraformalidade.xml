@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shrinkColumns="0"
-        android:stretchColumns="0,1"
+        android:stretchColumns="0"
         >
         <TableRow
             android:id="@+id/see_imgRow">
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_span="2"
-                android:entries="@array/see_shiftsTypessee_shiftsTypessee_shiftsTypes">
+                android:entries="@array/see_shiftsTypes">
             </Spinner>
         </TableRow>
         <TableRow>
@@ -103,7 +103,7 @@
                 android:inputType="date"
                 android:text="@string/see_author"
                 android:ems="10"
-                android:enabled="text"
+                android:enabled="false"
                 android:textIsSelectable="false"
                 />
         </TableRow>
@@ -117,6 +117,7 @@
                 android:ems="10"
                 android:enabled="false"
                 android:textIsSelectable="false"
+                android:gravity="left"
                 />
         </TableRow>
     </TableLayout>

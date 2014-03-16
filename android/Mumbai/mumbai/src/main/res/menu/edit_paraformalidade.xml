@@ -1,14 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.plataformaparaformal.Mumbai.editParaformalidadeActivity" >
-    
+    tools:context="com.plataformaparaformal.Mumbai.EditParaformalidadeActivity" >
+
     <item android:id="@+id/edit_send"
         android:title="@string/edit_send"
         android:orderInCategory="100"
-        app:showAsAction="always|collapseActionView" />
+        android:showAsAction="always|collapseActionView" />
     <item android:id="@+id/edit_settings"
         android:title="@string/edit_settings"
         android:orderInCategory="100"
-        app:showAsAction="ifRoom" />
+        android:showAsAction="ifRoom" />
 </menu>
