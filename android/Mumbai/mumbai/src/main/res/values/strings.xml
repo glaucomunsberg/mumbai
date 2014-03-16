@@ -46,8 +46,9 @@
     <string name="edit_description">Descrição</string>
     <string name="edit_send">Enviar</string>
     <string name="edit_settings">Configurações</string>
-    <string name="title_activity_see_paraformalidade">SeeParaformalidadeActivity</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="search_discard">Limpar Filtros</string>
+    <string name="search_filter">Filtrar</string>
+    <string name="search_settings">Configuracação</string>
+    <string name="title_activity_search">SearchActivity</string>
 
 </resources>

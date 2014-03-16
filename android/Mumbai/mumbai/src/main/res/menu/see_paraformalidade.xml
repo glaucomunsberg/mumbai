@@ -7,13 +7,13 @@
         android:id="@+id/see_edit"
         android:title="@string/see_edit"
         android:icon="@drawable/ic_action_edit"
-        android:showAsAction="always">
+        app:showAsAction="always">
     </item>
     <item
         android:id="@+id/see_share"
         android:title="@string/see_share"
         android:icon="@drawable/ic_action_share"
-        android:showAsAction="always|collapseActionView">
+        app:showAsAction="always">
     </item>
     <item
         android:id="@+id/see_settings"

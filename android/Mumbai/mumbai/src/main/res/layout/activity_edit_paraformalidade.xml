@@ -54,7 +54,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:layout_span="2"
-                android:entries="@array/see_activitiesTipes"
+                android:entries="@array/see_activitiesTypes"
                 android:prompt="@string/see_edit">
             </Spinner>
         </TableRow>

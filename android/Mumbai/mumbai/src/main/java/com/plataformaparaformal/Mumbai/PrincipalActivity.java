@@ -126,7 +126,6 @@ public class PrincipalActivity extends Activity {
         return true;
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent myIntent;
@@ -136,8 +135,18 @@ public class PrincipalActivity extends Activity {
                 startActivity(myIntent);
                 break;
             case R.id.action_create:
-                myIntent = new Intent(this, SeeParaformalidadeActivity.class);
+                myIntent = new Intent(this, EditParaformalidadeActivity.class);
                 startActivity(myIntent);
+                break;
+            case R.id.action_location:
+                myIntent = new Intent(this,SeeParaformalidadeActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.action_search:
+                myIntent = new Intent(this,SearchActivity.class);
+                startActivity(myIntent);
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }

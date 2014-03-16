@@ -10,7 +10,7 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-    <string-array name="see_activitiesTipes">
+    <string-array name="see_activitiesTypes">
         <item>Comércio</item>
         <item>Abandono</item>
         <item>Vazio</item>
