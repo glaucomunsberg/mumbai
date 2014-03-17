@@ -34,36 +34,34 @@
             </Button>
         </TableRow>
         <TableRow android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/edit_description"
                 android:focusable="false"
                 android:inputType="text"
                 android:width="@dimen/abc_config_prefDialogWidth"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_span="2"
                 android:layout_gravity="center"
                 android:text="@string/edit_description">
             </EditText>
         </TableRow>
-        <TableRow android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TableRow
+            android:layout_height="fill_parent">
             <Spinner
                 android:id="@+id/edit_activityType"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
                 android:layout_span="2"
+                android:layout_height="50dp"
                 android:entries="@array/see_activitiesTypes"
                 android:prompt="@string/see_edit">
             </Spinner>
         </TableRow>
-        <TableRow android:layout_width="match_parent">
+        <TableRow>
             <Spinner
                 android:id="@+id/edit_siftType"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
                 android:layout_span="2"
+                android:layout_height="50dp"
                 android:entries="@array/see_shiftsTypes"
                 android:prompt="@string/see_edit">
             </Spinner>
@@ -72,7 +70,7 @@
             <Spinner
                 android:id="@+id/edit_registredAmountType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_registredAmountTypes">
             </Spinner>
@@ -81,7 +79,7 @@
             <Spinner
                 android:id="@+id/edit_localizationType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_localizationsTypes">
             </Spinner>
@@ -90,7 +88,7 @@
             <Spinner
                 android:id="@+id/edit_positonBodyType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_positionBodyTypes">
             </Spinner>
@@ -99,7 +97,7 @@
             <Spinner
                 android:id="@+id/edit_numberBodyType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_numberBodyTypes">
             </Spinner>
@@ -108,7 +106,7 @@
             <Spinner
                 android:id="@+id/edit_equipmentScaleType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_equipmentScaleTypes">
             </Spinner>
@@ -117,7 +115,7 @@
             <Spinner
                 android:id="@+id/edit_equipmentMobilityType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_equimentMobilitiesTypes">
             </Spinner>
@@ -126,7 +124,7 @@
             <com.plataformaparaformal.Mumbai.util.MultiSelectSpinner
                 android:id="@+id/edit_sensesType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="50dp">
 
             </com.plataformaparaformal.Mumbai.util.MultiSelectSpinner>
         </TableRow>
@@ -134,21 +132,21 @@
             <com.plataformaparaformal.Mumbai.util.MultiSelectSpinner
                 android:id="@+id/edit_environmentalConditionsType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="50dp">
             </com.plataformaparaformal.Mumbai.util.MultiSelectSpinner>
         </TableRow>
         <TableRow>
             <com.plataformaparaformal.Mumbai.util.MultiSelectSpinner
                 android:id="@+id/edit_equipmentInstalation"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="50dp">
             </com.plataformaparaformal.Mumbai.util.MultiSelectSpinner>
         </TableRow>
         <TableRow>
             <com.plataformaparaformal.Mumbai.util.MultiSelectSpinner
                 android:id="@+id/edit_climateType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="50dp">
             </com.plataformaparaformal.Mumbai.util.MultiSelectSpinner>
         </TableRow>
     </TableLayout>

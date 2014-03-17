@@ -7,8 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shrinkColumns="0"
-        android:stretchColumns="0"
-        >
+        android:stretchColumns="0">
         <TableRow
             android:id="@+id/see_imgRow">
             <ImageView
@@ -44,7 +43,7 @@
             <Spinner
                 android:id="@+id/see_activityType"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_activitiesTypes"
                 android:prompt="@string/see_edit">
@@ -54,7 +53,7 @@
             <Spinner
                 android:id="@+id/see_localizationType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_localizationsTypes">
             </Spinner>
@@ -63,7 +62,7 @@
             <Spinner
                 android:id="@+id/see_registredAmountType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_registredAmountTypes">
             </Spinner>
@@ -72,7 +71,7 @@
             <Spinner
                 android:id="@+id/see_equipmentMobilityType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_equimentMobilitiesTypes">
             </Spinner>
@@ -81,7 +80,7 @@
             <Spinner
                 android:id="@+id/see_shiftType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_shiftsTypes">
             </Spinner>
@@ -90,7 +89,7 @@
             <Spinner
                 android:id="@+id/see_senseType"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_span="2"
                 android:entries="@array/see_sensesTypes">
             </Spinner>

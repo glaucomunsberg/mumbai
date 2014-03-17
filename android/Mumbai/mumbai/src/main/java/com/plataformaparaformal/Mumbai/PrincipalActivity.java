@@ -1,5 +1,6 @@
 package com.plataformaparaformal.Mumbai;
 
+import com.plataformaparaformal.Mumbai.util.Mumbai;
 import com.plataformaparaformal.Mumbai.util.SystemUiHider;
 
 import android.annotation.TargetApi;
@@ -44,6 +45,8 @@ public class PrincipalActivity extends Activity {
      * The flags to pass to {@link SystemUiHider#getInstance}.
      */
     private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
+
+    private static final Mumbai mumbai = Mumbai.getInstance();
 
     /**
      * The instance of the {@link SystemUiHider} for this activity.
