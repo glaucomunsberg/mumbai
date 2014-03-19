@@ -40,7 +40,7 @@
                 android:focusable="false"
                 android:inputType="text"
                 android:width="@dimen/abc_config_prefDialogWidth"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_width="wrap_content"
                 android:layout_span="2"
                 android:layout_gravity="center"

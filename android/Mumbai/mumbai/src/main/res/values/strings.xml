@@ -31,8 +31,8 @@
     <string name="settings_accountFacebookDetail">Não Vinculado</string>
     <string name="settings_accountTwitter">Twitter API Account</string>
     <string name="settings_accountTwitterDetail">Não Vinculado</string>
-    <string name="see_title">Informações</string>
-    <string name="see_subTitle">Detalhes da Paraformalidade</string>
+    <string name="see_title">Detalhes</string>
+    <string name="see_subTitle">Cena X</string>
     <string name="see_imageDetail">Imagem Exibição</string>
     <string name="see_date">10–12–2013</string>
     <string name="see_paraformaliade">Paraformalidade</string>
@@ -45,18 +45,21 @@
     <string name="imageFull_image">Visulizador de Imagem</string>
     <string name="imageFull_title">Visualizador de Imagens</string>
     <string name="imageFull_subTitle">Cena A</string>
-    <string name="edit_title">Editar</string>
-    <string name="edit_subTitle">Conhece alguma mudança?</string>
+    <string name="edit_title">Criar/Editar</string>
+    <string name="edit_subTitle">Cena Y</string>
     <string name="edit_imgDetail">Detalhes da Imagem</string>
     <string name="edit_btnUpload">Carregar Image</string>
     <string name="edit_description">Descrição</string>
     <string name="edit_send">Enviar</string>
     <string name="edit_settings">Configurações</string>
-    <string name="search_title">Tags</string>
-    <string name="search_subTitle">Filtre as paraformalidades</string>
+    <string name="search_title">Filtrar</string>
+    <string name="search_subTitle">Use Tags</string>
     <string name="search_discard">Limpar Filtros</string>
     <string name="search_filter">Filtrar</string>
     <string name="search_settings">Configuracação</string>
-    <string name="title_activity_search">SearchActivity</string>
 
+    <string name="alert_edit_title">Paraformalidade</string>
+    <string name="alert_edit_message">Enviada com sucesso!</string>
+    <string name="alert_edit_chooseUploadTitle">Escolha</string>
+    <string name="alert_edit_chooseUploadMessage"></string>
 </resources>

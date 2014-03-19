@@ -77,4 +77,9 @@
         <item>Chuva</item>
         <item>Quente</item>
     </string-array>
+
+    <string-array name="edit_choosePictureOrigins">
+        <item>Câmera</item>
+        <item>Arquivos</item>
+    </string-array>
 </resources>

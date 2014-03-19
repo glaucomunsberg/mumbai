@@ -1,13 +1,21 @@
 package com.plataformaparaformal.Mumbai;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import com.plataformaparaformal.Mumbai.util.MultiSelectSpinner;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class EditParaformalidadeActivity extends ActionBarActivity {
@@ -17,8 +25,13 @@ public class EditParaformalidadeActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_paraformalidade);
 
-        getActionBar().setTitle(R.string.edit_title);
-        getActionBar().setSubtitle(R.string.edit_subTitle);
+        if(Build.VERSION.SDK_INT > 10){
+            getActionBar().setTitle(R.string.edit_title);
+            getActionBar().setSubtitle(R.string.edit_subTitle);
+        }else{
+            getSupportActionBar().setTitle(R.string.edit_title);
+            getSupportActionBar().setSubtitle(R.string.edit_subTitle);
+        }
 
         MultiSelectSpinner multiSelectSpinner;
         ArrayAdapter<String> adapter;
@@ -43,6 +56,30 @@ public class EditParaformalidadeActivity extends ActionBarActivity {
         multiSelectSpinner.setItems(testArray);
         multiSelectSpinner.setSelection(0);
 
+
+        Button botton = (Button) findViewById(R.id.edit_btnUpload);
+        botton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle(R.string.alert_edit_chooseUploadTitle);
+                builder.setItems(R.array.edit_choosePictureOrigins, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        /**
+                         * UIASUIHIUAH
+                         */
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+            }
+        });
+
     }
 
     @Override
@@ -65,6 +102,13 @@ public class EditParaformalidadeActivity extends ActionBarActivity {
                 myIntent = new Intent(this, SettingsActivity.class);
                 startActivity(myIntent);
                 break;
+            case R.id.edit_send:
+                AlertDialog.Builder edit_send = new AlertDialog.Builder(this);
+                edit_send.setMessage(R.string.alert_edit_message).setTitle(R.string.alert_edit_title);
+                AlertDialog dialog = edit_send.create();
+                dialog.show();
+                break;
+
         }
 
         return super.onOptionsItemSelected(item);
