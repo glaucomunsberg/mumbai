@@ -2,7 +2,6 @@
 <PreferenceScreen
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:title="@string/menu_configuration"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
         android:title="@string/settings_categoryAccount">
@@ -56,6 +55,7 @@
     <PreferenceCategory
         android:title="@string/settings_categoryAbout">
         <PreferenceScreen
+            android:id="@+id/settings_screenVersion"
             android:title="@string/settings_aboutVersion"
             android:summary="@string/settings_aboutVersionInt"
             android:persistent="false">

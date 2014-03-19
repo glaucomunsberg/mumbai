@@ -1,12 +1,19 @@
 package com.plataformaparaformal.Mumbai.util;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
+import com.plataformaparaformal.Mumbai.EditParaformalidadeActivity;
+
 public class Config {
 
     private static volatile Config instance = null;
 
-	public String baseURL;
+    public int versionNum;
+
+    public String versionName;
+    public String baseURL;
 	public String hash;
-	public String versionNum;
 	public String versionCompilation;
 	public String versionDevelopBy;
 	public String helpURL;

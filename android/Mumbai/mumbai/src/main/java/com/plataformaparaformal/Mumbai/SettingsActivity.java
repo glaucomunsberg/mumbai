@@ -10,17 +10,21 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+
+import com.plataformaparaformal.Mumbai.util.Mumbai;
 
 import java.util.List;
 
@@ -37,13 +41,14 @@ import java.util.List;
  */
 public class SettingsActivity extends PreferenceActivity {
 
-
+    private static final Mumbai mumbai = Mumbai.getInstance();
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
         this.addPreferencesFromResource(R.xml.activity_settings);
-
+        getActionBar().setTitle(R.string.settings_title);
     }
 
     @Override

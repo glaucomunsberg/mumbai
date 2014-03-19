@@ -9,9 +9,9 @@ public class Mumbai {
 
     private static volatile Mumbai instance = null;
 
-	private static API api = API.getInstance();
-	private static User user = User.getInstance();
-	private static Config config = Config.getInstance();
+	public static API api = API.getInstance();
+	public static User user = User.getInstance();
+	public static Config config = Config.getInstance();
 
 	private Scene scene;
 

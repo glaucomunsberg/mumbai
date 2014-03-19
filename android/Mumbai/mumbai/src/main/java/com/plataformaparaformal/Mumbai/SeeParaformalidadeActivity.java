@@ -19,6 +19,8 @@ public class SeeParaformalidadeActivity extends ActionBarActivity {
 
         Intent myIntent;
         ImageView image = (ImageView) findViewById(R.id.see_img);
+        getActionBar().setTitle(R.string.see_title);
+        getActionBar().setSubtitle(R.string.see_subTitle);
         /**
          * HERE I NEED POST IMAGE OPENING WHIT ImageFullActivity
          */

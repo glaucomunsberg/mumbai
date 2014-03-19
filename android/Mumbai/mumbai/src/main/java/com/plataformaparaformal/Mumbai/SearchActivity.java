@@ -17,6 +17,9 @@ public class SearchActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        getActionBar().setTitle(R.string.search_title);
+        getActionBar().setSubtitle(R.string.search_subTitle);
+
         MultiSelectSpinner multiSelectSpinner;
         ArrayAdapter<String> adapter;
         String[] testArray;

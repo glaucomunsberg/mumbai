@@ -54,8 +54,8 @@ public class ImageFullActivity extends ActionBarActivity {
             img.setImageBitmap(mIcon_val);
         }
 
-
-
+        getActionBar().setTitle(R.string.imageFull_title);
+        getActionBar().setSubtitle(R.string.imageFull_subTitle);
     }
 
 
