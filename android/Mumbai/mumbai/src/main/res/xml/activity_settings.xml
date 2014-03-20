@@ -82,5 +82,20 @@
                 android:inputType="none">
             </EditTextPreference>
         </PreferenceScreen>
+        <PreferenceScreen
+            android:title="@string/settings_helper"
+            android:summary="@string/settings_helperInf">
+            <EditTextPreference
+                android:id="@+id/settings_helperAboutPlataforma"
+                android:key="settings_helperAboutPlataforma"
+                android:title="@string/settings_helperAboutPlataforma"
+                android:summary="@string/settings_helperAboutPlataformaInfo">
+            </EditTextPreference>
+            <EditTextPreference
+                android:id="@+id/settings_helperCenter"
+                android:key="settings_helperCenter"
+                android:title="@string/settings_helperCenter">
+            </EditTextPreference>
+        </PreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

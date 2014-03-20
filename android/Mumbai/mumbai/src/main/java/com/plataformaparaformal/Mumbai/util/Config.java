@@ -7,22 +7,18 @@ import com.plataformaparaformal.Mumbai.EditParaformalidadeActivity;
 
 public class Config {
 
-    private static volatile Config instance = null;
+    	private static volatile Config instance = null;
 
-    public int versionNum;
-
-
-    public String baseURL;
-	public String hash;
-    public String versionName;
-	public String versionCompilation;
-	public String versionDevelopBy;
-	public String helpURL;
-	public String homePagaURL;
-	public String passwordAPI;
-	public String baseURLAPI;
-
-	public int portAPI;
+    	public final int versionNum = 3;
+	public final int portAPI = 3000;
+	public final String hash = "";
+    	public final String versionName = "0.3";
+	public final String versionCompilation  = "02/02/02 a90eb18Fdd0";
+	public final String versionDevelopBy = "Developeria";
+	public final String urlHelpCenter = "http://www.plataformaparaformal.com.br/Ajuda";
+	public final String urlHomePage = "http://www.plataformaparaformal.com.br";
+	public final String passwordAPI = "";
+	public final String urlBaseAPI = "";
 
 	public boolean syncAutomatic;
 	public boolean notificationOnScree;
@@ -32,12 +28,6 @@ public class Config {
         syncAutomatic = true;
         notificationOnScree = true;
         seeFullImage = false;
-        versionNum = 1;
-        versionName = "0.3";
-        versionCompilation = "02/02/02 a90eb18Fdd0";
-        versionDevelopBy = "Developeria";
-        portAPI = 3000;
-
     }
 
     public static Config getInstance(){

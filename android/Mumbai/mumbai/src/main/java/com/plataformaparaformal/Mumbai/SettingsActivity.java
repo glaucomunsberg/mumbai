@@ -1,35 +1,22 @@
 package com.plataformaparaformal.Mumbai;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
-import android.preference.RingtonePreference;
-import android.text.TextUtils;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
-import com.plataformaparaformal.Mumbai.services.SocialNetwork;
 import com.plataformaparaformal.Mumbai.util.Mumbai;
-
-import java.util.List;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -125,11 +112,46 @@ public class SettingsActivity extends PreferenceActivity {
 
         }
 
+        editTextPreference = (EditTextPreference) findPreference("settings_helperAboutPlataforma");
+        editTextPreference.setEnabled(false);
+        editTextPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                try {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mumbai.config.urlHelpCenter));
+                    return true;
+                } catch (Exception e) {
+                    Toast.makeText(preference.getContext(), "Not open", Toast.LENGTH_LONG).show();
+                }
+                return false;
+            }
+        });
+
+        editTextPreference = (EditTextPreference) findPreference("settings_helperCenter");
+        editTextPreference.setEnabled(false);
+        editTextPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                try{
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mumbai.config.urlHomePage));
+                    return true;
+                }catch(Exception e){
+                    Toast.makeText(preference.getContext(),"Not open",Toast.LENGTH_LONG).show();
+                }
+                return false;
+            }
+        });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        return super.onOptionsItemSelected(item);
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        if(id == R.id.settings_helperCenter){
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mumbai.config.urlHomePage));
+        }
+        super.onListItemClick(l, v, position, id);
     }
 }
