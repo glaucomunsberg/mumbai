@@ -2,6 +2,7 @@ package com.plataformaparaformal.Mumbai;
 
 import android.annotation.TargetApi;
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -10,6 +11,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -24,6 +26,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 
+import com.plataformaparaformal.Mumbai.services.SocialNetwork;
 import com.plataformaparaformal.Mumbai.util.Mumbai;
 
 import java.util.List;
@@ -49,16 +52,84 @@ public class SettingsActivity extends PreferenceActivity {
 
         this.addPreferencesFromResource(R.xml.activity_settings);
         getActionBar().setTitle(R.string.settings_title);
+
+        /**
+         * Setting the preference of the sistem and the some informations
+         */
+        CheckBoxPreference ckeck = (CheckBoxPreference) findPreference("settings_sync");
+        ckeck.setChecked(mumbai.config.syncAutomatic);
+        ckeck.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o) {
+                if(o instanceof Boolean){
+                    mumbai.config.syncAutomatic = (Boolean) o;
+                }
+                return true;
+            }
+        });
+        ckeck = (CheckBoxPreference) findPreference("setting_notification");
+        ckeck.setChecked(mumbai.config.notificationOnScree);
+        ckeck.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o) {
+                if(o instanceof Boolean){
+                    mumbai.config.notificationOnScree = (Boolean) o;
+                }
+                return true;
+            }
+        });
+        ckeck = (CheckBoxPreference) findPreference("settings_imgHighResolution");
+        ckeck.setChecked(mumbai.config.seeFullImage);
+        ckeck.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o) {
+                if(o instanceof Boolean){
+                    mumbai.config.seeFullImage = (Boolean) o;
+                }
+                return true;
+            }
+        });
+
+        PreferenceScreen preferenceScreen = (PreferenceScreen) findPreference("settings_screenVersion");
+        preferenceScreen.setSummary(mumbai.config.versionName);
+        EditTextPreference editTextPreference = (EditTextPreference) findPreference("settings_version");
+        editTextPreference.setSummary(mumbai.config.versionName);
+        editTextPreference.setEnabled(false);
+        editTextPreference = (EditTextPreference) findPreference("settings_developer");
+        editTextPreference.setSummary(mumbai.config.versionDevelopBy);
+        editTextPreference.setEnabled(false);
+        editTextPreference = (EditTextPreference) findPreference("settings_compilation");
+        editTextPreference.setSummary(mumbai.config.versionCompilation);
+        editTextPreference.setEnabled(false);
+
+        if(!mumbai.user.logged){
+            PreferenceScreen preferenceScreen1 = (PreferenceScreen) findPreference("settings_accountLogged");
+            preferenceScreen1.setTitle(R.string.settings_account);
+            preferenceScreen1.setSummary(mumbai.user.userType.getAccount());
+            switch(mumbai.user.userType){
+                case account_facebook:
+                    editTextPreference = (EditTextPreference) findPreference("setting_accountFacebook");
+                    editTextPreference.setSummary(R.string.settings_accountBound);
+                    break;
+                case account_google:
+                    editTextPreference = (EditTextPreference) findPreference("setting_accountGoogle");
+                    editTextPreference.setSummary(R.string.settings_accountBound);
+                    break;
+                case account_twitter:
+                    editTextPreference = (EditTextPreference) findPreference("settings_accountTwitter");
+                    editTextPreference.setSummary(R.string.settings_accountBound);
+                    break;
+                case account_none:
+                    break;
+            }
+
+        }
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.settings_compilation){
-            item.setEnabled(false);
-            EditText text = (EditText) item;
-            text.setFocusable(false);
-            text.setEnabled(false);
-        }
+
         return super.onOptionsItemSelected(item);
     }
 }

@@ -1,5 +1,9 @@
-package com.plataformaparaformal.Mumbai.services;
+package com.plataformaparaformal.Mumbai.util;
 
+
+import com.plataformaparaformal.Mumbai.services.Paraformalidade;
+import com.plataformaparaformal.Mumbai.services.Scene;
+import com.plataformaparaformal.Mumbai.services.SocialNetwork;
 
 import java.util.ArrayList;
 
@@ -24,6 +28,8 @@ public class User {
     private ArrayList<Paraformalidade> userParaformalidades;
 
     private User(){
+        logged = false;
+        userType = SocialNetwork.account_none;
         userScenes = new ArrayList<Scene>();
         userParaformalidades = new ArrayList<Paraformalidade>();
     }

@@ -45,14 +45,6 @@ public class PrincipalActivity extends Activity {
 
         setContentView(R.layout.activity_principal);
 
-        try {
-            PackageInfo packInfo = getPackageManager().getPackageInfo(getPackageName(),0);
-            mumbai.config.versionNum = packInfo.versionCode;
-            mumbai.config.versionName = packInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
         GoogleMap map = ( (MapFragment) getFragmentManager().findFragmentById(R.id.fullscreen_map)).getMap();
         LatLng pelotas = new LatLng(-33.867,151.206);
         map.setMyLocationEnabled(true);

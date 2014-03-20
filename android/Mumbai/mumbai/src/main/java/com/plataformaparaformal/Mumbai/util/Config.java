@@ -11,9 +11,10 @@ public class Config {
 
     public int versionNum;
 
-    public String versionName;
+
     public String baseURL;
 	public String hash;
+    public String versionName;
 	public String versionCompilation;
 	public String versionDevelopBy;
 	public String helpURL;
@@ -28,6 +29,14 @@ public class Config {
 	public boolean seeFullImage;
 
     private Config(){
+        syncAutomatic = true;
+        notificationOnScree = true;
+        seeFullImage = false;
+        versionNum = 1;
+        versionName = "0.3";
+        versionCompilation = "02/02/02 a90eb18Fdd0";
+        versionDevelopBy = "Developeria";
+        portAPI = 3000;
 
     }
 

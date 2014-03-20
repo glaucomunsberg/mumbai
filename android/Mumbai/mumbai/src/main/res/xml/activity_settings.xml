@@ -6,26 +6,29 @@
     <PreferenceCategory
         android:title="@string/settings_categoryAccount">
         <PreferenceScreen
-            android:title="@string/settings_accountDefault"
-            android:summary="@string/settings_accountDefaultType"
+            android:key="settings_accountLogged"
+            android:title="@string/settings_accounts"
+            android:summary="@string/settings_accountNoBound"
             android:persistent="false">
             <EditTextPreference
                 android:id="@+id/setting_accountGoogle"
+                android:key="setting_accountGoogle"
                 android:title="@string/settings_accountGoogle"
-                android:summary="@string/settings_accountGoogleDetail"
+                android:summary="@string/settings_accountNoBound"
                 android:editable="false">
             </EditTextPreference>
             <EditTextPreference
-                android:id="@+id/settings_developer"
+                android:id="@+id/setting_accountFacebook"
+                android:key="setting_accountFacebook"
                 android:title="@string/settings_accountFacebook"
-                android:summary="@string/settings_accountFacebookDetail"
+                android:summary="@string/settings_accountNoBound"
                 android:focusable="false"
                 android:editable="false">
             </EditTextPreference>
             <EditTextPreference
                 android:id="@+id/settings_compilation"
                 android:title="@string/settings_accountTwitter"
-                android:summary="@string/settings_accountTwitterDetail"
+                android:summary="@string/settings_accountNoBound"
                 android:inputType="none"
                 android:editable="false">
             </EditTextPreference>
@@ -34,50 +37,49 @@
     <PreferenceCategory
         android:title="@string/settings_categoryAdvance">
         <CheckBoxPreference
+            android:id="@+id/settings_sync"
             android:key="settings_sync"
             android:title="@string/settings_sync"
             android:summary="@string/settings_sync"
             android:defaultValue="true">
         </CheckBoxPreference>
         <CheckBoxPreference
-            android:key="settings_sync"
+            android:id="@+id/setting_notification"
+            android:key="setting_notification"
             android:title="@string/settings_notif"
             android:summary="@string/settings_notifSumm"
             android:defaultValue="true">
         </CheckBoxPreference>
         <CheckBoxPreference
+            android:id="@+id/settings_imgHighResolution"
             android:key="settings_imgHighResolution"
             android:title="@string/settings_highResolution"
             android:summary="@string/settings_highResolutionSumm"
-            android:defaultValue="false">
+            android:defaultValue="true">
         </CheckBoxPreference>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/settings_categoryAbout">
         <PreferenceScreen
             android:id="@+id/settings_screenVersion"
-            android:title="@string/settings_aboutVersion"
-            android:summary="@string/settings_aboutVersionInt"
-            android:persistent="false">
+            android:key="settings_screenVersion"
+            android:title="@string/settings_aboutVersion">
             <EditTextPreference
                 android:id="@+id/settings_version"
-                android:title="@string/settings_aboutVersion"
-                android:summary="@string/settings_aboutVersionInt"
-                android:editable="false">
+                android:key="settings_version"
+                android:title="@string/settings_aboutVersion">
             </EditTextPreference>
             <EditTextPreference
                 android:id="@+id/settings_developer"
+                android:key="settings_developer"
                 android:title="@string/settings_aboutDeveloper"
-                android:summary="@string/settings_aboutDevelopers"
-                android:focusable="false"
-                android:editable="false">
+                android:focusable="false">
             </EditTextPreference>
             <EditTextPreference
                 android:id="@+id/settings_compilation"
+                android:key="settings_compilation"
                 android:title="@string/settings_compilation"
-                android:summary="@string/settings_compilationDetail"
-                android:inputType="none"
-                android:editable="false">
+                android:inputType="none">
             </EditTextPreference>
         </PreferenceScreen>
     </PreferenceCategory>
