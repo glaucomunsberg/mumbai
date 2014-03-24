@@ -18,7 +18,6 @@ public enum SocialNetwork {
             case account_twitter:
                 return "Twitter";
             case account_none:
-                return "";
             default:
                 return "";
         }

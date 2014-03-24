@@ -58,6 +58,8 @@
     <string name="search_filter">Filtrar</string>
     <string name="search_settings">Configuracação</string>
 
+    <string name="alert_principal_GPSNotConnected">Habilite seu GPS</string>
+    <string name="alert_principal_GPSFailed">Falha ao obter local por GPS</string>
     <string name="alert_edit_title">Paraformalidade</string>
     <string name="alert_edit_message">Enviada com sucesso!</string>
     <string name="alert_edit_chooseUploadTitle">Escolha</string>

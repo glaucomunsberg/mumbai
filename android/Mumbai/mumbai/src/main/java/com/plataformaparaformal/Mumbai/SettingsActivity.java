@@ -113,12 +113,15 @@ public class SettingsActivity extends PreferenceActivity {
         }
 
         editTextPreference = (EditTextPreference) findPreference("settings_helperAboutPlataforma");
-        editTextPreference.setEnabled(false);
+        editTextPreference.onClick(null,0);
+        editTextPreference.onDismiss(null);
         editTextPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 try {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mumbai.config.urlHelpCenter));
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(mumbai.config.urlHomePage));
+                    startActivity(i);
                     return true;
                 } catch (Exception e) {
                     Toast.makeText(preference.getContext(), "Not open", Toast.LENGTH_LONG).show();
@@ -128,19 +131,25 @@ public class SettingsActivity extends PreferenceActivity {
         });
 
         editTextPreference = (EditTextPreference) findPreference("settings_helperCenter");
-        editTextPreference.setEnabled(false);
+        editTextPreference.onClick(null,0);
+        editTextPreference.onDismiss(null);
         editTextPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                try{
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mumbai.config.urlHomePage));
+                try {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(mumbai.config.urlHelpCenter));
+                    startActivity(i);
                     return true;
-                }catch(Exception e){
-                    Toast.makeText(preference.getContext(),"Not open",Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(preference.getContext(), "Not open", Toast.LENGTH_LONG).show();
                 }
                 return false;
             }
         });
+
+
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -149,9 +158,6 @@ public class SettingsActivity extends PreferenceActivity {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        if(id == R.id.settings_helperCenter){
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mumbai.config.urlHomePage));
-        }
         super.onListItemClick(l, v, position, id);
     }
 }
