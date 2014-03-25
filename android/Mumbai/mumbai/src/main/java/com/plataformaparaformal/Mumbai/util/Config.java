@@ -7,9 +7,13 @@ import android.widget.Toast;
 
 import com.plataformaparaformal.Mumbai.EditParaformalidadeActivity;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class Config {
 
     private static volatile Config instance = null;
+    private static Calendar calendar = Calendar.getInstance();
 
     public final int versionNum = 3;
 	public final String portAPI = "3000";
@@ -28,10 +32,10 @@ public class Config {
 	public boolean notificationOnScree;
 	public boolean seeFullImage;
     public boolean isOnAir;
+    public Date lastUpdate;
+
     private Config(){
-        syncAutomatic = true;
-        notificationOnScree = true;
-        seeFullImage = false;
+        this.loadConfigDefault();
     }
 
     public static Config getInstance(){
@@ -45,4 +49,15 @@ public class Config {
         return instance;
     }
 
+    private void loadConfigDefault(){
+        syncAutomatic = true;
+        notificationOnScree = true;
+        seeFullImage = false;
+        calendar.set(2014,03,31);
+        lastUpdate = calendar.getTime();
+    }
+
+    private void loadConfgOnDevaice(){
+
+    }
 }

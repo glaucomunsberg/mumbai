@@ -11,8 +11,11 @@ import com.plataformaparaformal.Mumbai.util.SystemUiHider;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,7 +31,7 @@ import com.google.android.gms.maps.*;
  *
  * @see SystemUiHider
  */
-public class PrincipalActivity extends Activity implements GooglePlayServicesClient.ConnectionCallbacks,GooglePlayServicesClient.OnConnectionFailedListener{
+public class PrincipalActivity extends Activity{
 
     private static final Mumbai mumbai = Mumbai.getInstance();
     private Toast toast;
@@ -55,10 +58,33 @@ public class PrincipalActivity extends Activity implements GooglePlayServicesCli
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(pelotas,13));
         map.addMarker(new MarkerOptions().title("Pelotas").snippet("Princesa do Sul").position(pelotas));
 
-        locationClient = new LocationClient(this,this,this);
-        locationClient.connect();
+
 
         mumbai.api.isOnAir();
+
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),13));
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+        };
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
 
     }
 
@@ -100,20 +126,4 @@ public class PrincipalActivity extends Activity implements GooglePlayServicesCli
 
     }
 
-    @Override
-    public void onConnected(Bundle bundle) {
-        //map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locationClient.getLastLocation().getLatitude(),locationClient.getLastLocation().getLongitude()),13));
-    }
-
-    @Override
-    public void onDisconnected() {
-        toast.setText(R.string.alert_principal_GPSNotConnected);
-        toast.show();
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        toast.setText(R.string.alert_principal_GPSFailed);
-        toast.show();
-    }
 }
