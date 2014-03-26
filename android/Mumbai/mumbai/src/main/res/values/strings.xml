@@ -15,6 +15,7 @@
     <string name="settings_accounts">Contas</string>
     <string name="settings_sync">Sincronização</string>
     <string name="settings_syncSumm">Automático</string>
+    <string name="settings_syncSummLastUpdate">Sincronizado </string>
     <string name="settings_notif">Notificação</string>
     <string name="settings_notifSumm">Mostrar no Sistema</string>
     <string name="settings_highResolution">Alta Resolução</string>
@@ -65,4 +66,6 @@
     <string name="alert_edit_chooseUploadTitle">Escolha</string>
     <string name="alert_edit_chooseUploadMessage"></string>
     <string name="settings_helperCenter">Central de Ajuda</string>
+    <string name="alert_settings_saveSuccess">Configuração Salva</string>
+    <string name="alert_settings_notSaveSucess">Erro ao Salvar Configuração</string>
 </resources>

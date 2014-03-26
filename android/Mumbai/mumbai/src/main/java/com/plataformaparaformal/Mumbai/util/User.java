@@ -1,6 +1,11 @@
 package com.plataformaparaformal.Mumbai.util;
 
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.content.Context;
+import android.util.Log;
+
 import com.plataformaparaformal.Mumbai.services.Paraformalidade;
 import com.plataformaparaformal.Mumbai.services.Scene;
 import com.plataformaparaformal.Mumbai.services.SocialNetwork;
@@ -52,5 +57,4 @@ public class User {
 	public boolean isLogged() {
 		return false;
 	}
-
 }

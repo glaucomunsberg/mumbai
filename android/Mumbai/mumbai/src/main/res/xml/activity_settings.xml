@@ -40,7 +40,7 @@
             android:id="@+id/settings_sync"
             android:key="settings_sync"
             android:title="@string/settings_sync"
-            android:summary="@string/settings_sync"
+            android:summary="@string/settings_syncSumm"
             android:defaultValue="true">
         </CheckBoxPreference>
         <CheckBoxPreference

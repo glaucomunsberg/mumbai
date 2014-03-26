@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.plataformaparaformal.Mumbai.util.Mumbai;
 
+import java.util.Calendar;
+
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
  * handset devices, settings are presented as a single list. On tablets,
@@ -45,6 +47,13 @@ public class SettingsActivity extends PreferenceActivity {
          */
         CheckBoxPreference ckeck = (CheckBoxPreference) findPreference("settings_sync");
         ckeck.setChecked(mumbai.config.syncAutomatic);
+        if(!mumbai.config.syncAutomatic){
+            String lastUpdate = getResources().getString(R.string.settings_syncSummLastUpdate);
+            lastUpdate += mumbai.config.lastUpdate.get(Calendar.DAY_OF_MONTH)+"/";
+            lastUpdate += mumbai.config.lastUpdate.get(Calendar.MONTH)+"/";
+            lastUpdate += mumbai.config.lastUpdate.get(Calendar.YEAR);
+            ckeck.setSummary(lastUpdate);
+        }
         ckeck.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
@@ -159,5 +168,16 @@ public class SettingsActivity extends PreferenceActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(mumbai.config.saveConfig()){
+            mumbai.config.principalToast.setText(R.string.alert_settings_saveSuccess);
+        }else{
+            mumbai.config.principalToast.setText(R.string.alert_settings_notSaveSucess);
+        };
+        mumbai.config.principalToast.show();
     }
 }
