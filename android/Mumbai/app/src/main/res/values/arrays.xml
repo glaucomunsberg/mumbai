@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_accountsOptions">
+        <item name="google">Google</item>
+        <item name="facebook">Facebook</item>
+        <item name="twitter">Twitter</item>
+    </string-array>
+
+    <string-array name="settings_accountsValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="paraformalidade_search_menu">
+        <item>Atividades Tipos</item>
+        <item>Turno</item>
+        <item>Quantidade</item>
+        <item>Localização</item>
+        <item>Corpo Posição</item>
+        <item>Corpos Números</item>
+        <item>Sentidos</item>
+        <item>Equipamento Mobilidade</item>
+        <item>Equipamento Tamanho</item>
+        <item>Equipamento Instalação</item>
+    </string-array>
+
+    <string-array name="edit_choosePictureOrigins">
+        <item>Câmera</item>
+        <item>Arquivos</item>
+    </string-array>
+</resources>
