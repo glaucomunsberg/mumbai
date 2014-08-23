@@ -45,6 +45,7 @@ public class Edit extends Fragment {
     private ArrayList<Integer> senseId,equipmentInstalationId;
     private Uri image;
     private ImageView img;
+
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,Bundle savedInstanceState) {
 
         if (view != null) {

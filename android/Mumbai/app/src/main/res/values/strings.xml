@@ -79,4 +79,6 @@
     <string name="api_is_on_air">Está no Ar</string>
     <string name="api_what">Aguarde</string>
     <string name="api_is_no_on_air">Não está no Ar</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

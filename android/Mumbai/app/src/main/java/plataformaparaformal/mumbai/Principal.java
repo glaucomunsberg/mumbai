@@ -41,9 +41,6 @@ public class Principal extends Fragment {
 
         }
 
-
-
-
         if(mumbai.config.getIsTheFirstTime()){
             mumbai.config.setIsTheFirstTime(false);
 

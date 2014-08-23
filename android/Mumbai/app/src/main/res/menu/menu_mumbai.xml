@@ -5,12 +5,15 @@
     <item
         android:id="@+id/menu_top_mumbai_location"
         android:title="@string/menu_location"
+        android:icon="@drawable/ic_action_location_found"
         android:showAsAction="withText|ifRoom"/>
     <item android:id="@+id/menu_top_mumbai_create"
         android:title="@string/menu_create"
+        android:icon="@drawable/ic_action_new"
         android:showAsAction="never" />
     <item android:id="@+id/menu_top_mumbai_settings"
         android:title="@string/menu_configuration"
+        android:icon="@drawable/ic_action_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
 </menu>

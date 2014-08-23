@@ -91,7 +91,7 @@ public class Config {
         notificationOnScree = true;
         seeFullImage = false;
         lastUpdate = Calendar.getInstance();
-        lastUpdate.set(2014, 03, 26);
+        lastUpdate.set(2014, lastUpdate.MAY, 26);
     }
 
     private void loadConfgOnDevice(){
@@ -136,7 +136,47 @@ public class Config {
                         Log.e(LOG_TAG,date[0]);
                         Log.e(LOG_TAG,date[1]);
                         Log.e(LOG_TAG, date[2]);
-                        lastUpdate.set(2014, 03, 26);
+                        int mes = Integer.parseInt(date[1]);
+                        switch (mes){
+                            case 1:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.JANUARY, Integer.parseInt(date[2]));
+                                break;
+                            case 2:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.FEBRUARY, Integer.parseInt(date[2]));
+                                break;
+                            case 3:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.MAY, Integer.parseInt(date[2]));
+                                break;
+                            case 4:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.MARCH, Integer.parseInt(date[2]));
+                                break;
+                            case 5:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.APRIL, Integer.parseInt(date[2]));
+                                break;
+                            case 6:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.JUNE, Integer.parseInt(date[2]));
+                                break;
+                            case 7:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.JULY, Integer.parseInt(date[2]));
+                                break;
+                            case 8:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.AUGUST, Integer.parseInt(date[2]));
+                                break;
+                            case 9:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.SEPTEMBER, Integer.parseInt(date[2]));
+                                break;
+                            case 10:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.OCTOBER, Integer.parseInt(date[2]));
+                                break;
+                            case 11:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.NOVEMBER, Integer.parseInt(date[2]));
+                                break;
+                            case 12:
+                                lastUpdate.set(Integer.parseInt(date[0]), lastUpdate.DECEMBER, Integer.parseInt(date[2]));
+                                break;
+
+                        }
+
                 }
                 lineOfFile++;
             }

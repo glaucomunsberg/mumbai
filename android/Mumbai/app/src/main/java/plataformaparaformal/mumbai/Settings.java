@@ -2,7 +2,8 @@ package plataformaparaformal.mumbai;
 
 import plataformaparaformal.mumbai.services.Mumbai;
 
-import android.app.FragmentManager;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -29,7 +31,7 @@ import java.util.Calendar;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class Settings extends PreferenceFragment {
+public class Settings extends PreferenceFragment  {
     /**
      * Determines whether to always show the simplified settings UI, where
      * settings are presented in a single list. When false, settings are shown
@@ -37,6 +39,7 @@ public class Settings extends PreferenceFragment {
      * shown on tablets.
      */
     private static final Mumbai mumbai = Mumbai.getInstance();
+    private View view;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,16 +109,16 @@ public class Settings extends PreferenceFragment {
             preferenceScreen1.setSummary(mumbai.user.userType.getAccount());
             switch(mumbai.user.userType){
                 case account_facebook:
-                    editTextPreference = (EditTextPreference) findPreference("setting_accountFacebook");
-                    editTextPreference.setSummary(R.string.settings_accountBound);
+                    preferenceScreen = (PreferenceScreen) findPreference("setting_accountFacebook");
+                    preferenceScreen.setSummary(R.string.settings_accountBound);
                     break;
                 case account_google:
-                    editTextPreference = (EditTextPreference) findPreference("setting_accountGoogle");
-                    editTextPreference.setSummary(R.string.settings_accountBound);
+                    preferenceScreen = (PreferenceScreen) findPreference("setting_accountGoogle");
+                    preferenceScreen.setSummary(R.string.settings_accountBound);
                     break;
                 case account_twitter:
-                    editTextPreference = (EditTextPreference) findPreference("settings_accountTwitter");
-                    editTextPreference.setSummary(R.string.settings_accountBound);
+                    preferenceScreen = (PreferenceScreen) findPreference("settings_accountTwitter");
+                    preferenceScreen.setSummary(R.string.settings_accountBound);
                     break;
                 case account_none:
                     break;
@@ -123,10 +126,26 @@ public class Settings extends PreferenceFragment {
 
         }
 
-        editTextPreference = (EditTextPreference) findPreference("settings_helperAboutPlataforma");
-        editTextPreference.onClick(null,0);
-        editTextPreference.onDismiss(null);
-        editTextPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        preferenceScreen = (PreferenceScreen) findPreference("setting_accountGoogle");
+        preferenceScreen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Fragment newFragment;
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                AccountGoogle accountGoogle = new AccountGoogle();
+                transaction.replace(R.id.container, accountGoogle);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                //getFragmentManager().popBackStack();
+
+                return true;
+            }
+        });
+
+
+        preferenceScreen = (PreferenceScreen) findPreference("settings_helperAboutPlataforma");
+        preferenceScreen.onDismiss(null);
+        preferenceScreen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 try {
@@ -141,10 +160,8 @@ public class Settings extends PreferenceFragment {
             }
         });
 
-        editTextPreference = (EditTextPreference) findPreference("settings_helperCenter");
-        editTextPreference.onClick(null,0);
-        editTextPreference.onDismiss(null);
-        editTextPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        preferenceScreen = (PreferenceScreen) findPreference("settings_helperCenter");
+        preferenceScreen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 try {
@@ -165,6 +182,10 @@ public class Settings extends PreferenceFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    public void setView(View view){
+        this.view = view;
     }
 
     @Override
