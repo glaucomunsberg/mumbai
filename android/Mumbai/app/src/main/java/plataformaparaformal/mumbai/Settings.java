@@ -111,6 +111,14 @@ public class Settings extends PreferenceFragment  {
                 case account_facebook:
                     preferenceScreen = (PreferenceScreen) findPreference("setting_accountFacebook");
                     preferenceScreen.setSummary(R.string.settings_accountBound);
+                    preferenceScreen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference preference) {
+                            Intent intent = new Intent(getActivity(), AccountFacebook.class);
+                            startActivity(intent);
+                            return true;
+                        }
+                    });
                     break;
                 case account_google:
                     preferenceScreen = (PreferenceScreen) findPreference("setting_accountGoogle");
@@ -130,17 +138,22 @@ public class Settings extends PreferenceFragment  {
         preferenceScreen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Fragment newFragment;
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                AccountGoogle accountGoogle = new AccountGoogle();
-                transaction.replace(R.id.container, accountGoogle);
-                transaction.addToBackStack(null);
-                transaction.commit();
-                //getFragmentManager().popBackStack();
-
+                Intent intent = new Intent(getActivity(), AccountGoogle.class);
+                startActivity(intent);
                 return true;
             }
         });
+
+        preferenceScreen = (PreferenceScreen) findPreference("setting_accountFacebook");
+        preferenceScreen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), AccountFacebook.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+
 
 
         preferenceScreen = (PreferenceScreen) findPreference("settings_helperAboutPlataforma");
@@ -175,6 +188,7 @@ public class Settings extends PreferenceFragment  {
                 return false;
             }
         });
+
         setHasOptionsMenu(true);
     }
 

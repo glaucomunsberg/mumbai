@@ -10,7 +10,8 @@
             android:key="settings_accountLogged"
             android:title="@string/settings_accounts"
             android:summary="@string/settings_accountNoBound"
-            android:persistent="false">
+            android:persistent="false"
+            android:id="@+id/account">
             <EditTextPreference
                 android:id="@+id/setting_accountGoogle"
                 android:key="setting_accountGoogle"
@@ -28,14 +29,7 @@
                 android:focusable="false"
                 android:editable="false">
             </EditTextPreference>
-            <EditTextPreference
-                android:id="@+id/settings_compilation"
-                android:title="@string/settings_accountTwitter"
-                android:icon="@drawable/ic_account_twitter"
-                android:summary="@string/settings_accountNoBound"
-                android:inputType="none"
-                android:editable="false">
-            </EditTextPreference>
+
         </PreferenceScreen>
     </PreferenceCategory>
 

@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Mumbai</string>
+    <string name="facebook_id">690082961010008</string>
     <string name="menu_create">Criar</string>
     <string name="menu_search">Procurar</string>
     <string name="menu_location">Localização Atual</string>
@@ -80,5 +81,8 @@
     <string name="api_what">Aguarde</string>
     <string name="api_is_no_on_air">Não está no Ar</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_account_facebook">AccountFacebook</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
