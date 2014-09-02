@@ -3,6 +3,7 @@
 
     <string name="app_name">Mumbai</string>
     <string name="facebook_id">690082961010008</string>
+    <string name="facebook_login_title">Conectar com conta do Facebook</string>
     <string name="menu_create">Criar</string>
     <string name="menu_search">Procurar</string>
     <string name="menu_location">Localização Atual</string>

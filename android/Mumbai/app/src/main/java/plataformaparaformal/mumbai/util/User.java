@@ -9,27 +9,31 @@ public class User {
 
     private static volatile User instance = null;
 
-    public int id;
-    public int lastLat;
-    public int lastLng;
+    private int id;
+    private double lastLat;
+    private double lastLng;
 
-    public SocialNetwork userType;
+    private SocialNetwork userType;
 
-	public boolean logged;
+    private boolean userLogged;
+    private boolean userLoggedOnServidor;
+    private boolean haveParaformalidadeToSync;
 
-    public String userId;
-	public String name;
-	public String dtBorn;
-	public String email;
+    private String userId;
+    private String userName;
+    private String userDtBorn;
+    private String userEmail;
 
     private ArrayList<TypeBase> userScenes;
     private ArrayList<Paraformalidade> userParaformalidades;
 
     private User(){
-        logged = false;
+        haveParaformalidadeToSync = false;
+        userLogged = false;
         userType = SocialNetwork.account_none;
         userScenes = new ArrayList<TypeBase>();
         userParaformalidades = new ArrayList<Paraformalidade>();
+        userLoggedOnServidor = false;
     }
 
     public static User getInstance(){
@@ -44,10 +48,32 @@ public class User {
     }
 
 	public boolean haveParaformalidadeToSend() {
-		return false;
+		return haveParaformalidadeToSync;
 	}
 
+    public void setLastLocalization(double lastLat,double lastLng){
+        this.lastLat = lastLat;
+        this.lastLng = lastLng;
+    }
+
+    public void setUserInformation(String name,String userId,String born,SocialNetwork network, String userEmail){
+        this.userDtBorn = born;
+        this.userName = name;
+        this.userId = userId;
+        this.userEmail = userEmail;
+        this.userType = network;
+        this.userLogged = true;
+    }
+
+    public SocialNetwork getUserType(){
+        return userType;
+    }
+
 	public boolean isLogged() {
-		return false;
+		return this.userLogged;
 	}
+
+    public boolean isUserLoggedOnServidor(){
+        return userLoggedOnServidor;
+    }
 }

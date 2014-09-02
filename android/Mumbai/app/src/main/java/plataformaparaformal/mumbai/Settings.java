@@ -103,11 +103,11 @@ public class Settings extends PreferenceFragment  {
         editTextPreference.setSummary(mumbai.config.versionCompilation);
         editTextPreference.setEnabled(false);
 
-        if(!mumbai.user.logged){
+        if(!mumbai.user.isLogged()){
             PreferenceScreen preferenceScreen1 = (PreferenceScreen) findPreference("settings_accountLogged");
             preferenceScreen1.setTitle(R.string.settings_account);
-            preferenceScreen1.setSummary(mumbai.user.userType.getAccount());
-            switch(mumbai.user.userType){
+            preferenceScreen1.setSummary(mumbai.user.getUserType().getAccount());
+            switch(mumbai.user.getUserType()){
                 case account_facebook:
                     preferenceScreen = (PreferenceScreen) findPreference("setting_accountFacebook");
                     preferenceScreen.setSummary(R.string.settings_accountBound);

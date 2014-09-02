@@ -49,8 +49,6 @@ public class Principal extends Fragment {
             /**
              * Starting the menu_mumbai system
              */
-
-
             mumbai.config.principalToast = toast;
             alertDialog = new AlertDialog.Builder(this.getActivity());
             alertDialog.create();
@@ -78,6 +76,7 @@ public class Principal extends Fragment {
                 @Override
                 public void onLocationChanged(Location location) {
                     mumbai.map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),13));
+                    mumbai.user.setLastLocalization(location.getLatitude(),location.getLongitude());
                 }
 
                 @Override
