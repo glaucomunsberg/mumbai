@@ -26,7 +26,7 @@
                 android:editable="false">
             </PreferenceScreen>
             <PreferenceScreen
-                android:id="@+id/settings_compilation"
+                android:id="@+id/setting_accountTwitter"
                 android:title="@string/settings_accountTwitter"
                 android:icon="@drawable/ic_account_twitter"
                 android:summary="@string/settings_accountNoBound"
@@ -82,6 +82,13 @@
                 android:id="@+id/settings_compilation"
                 android:key="settings_compilation"
                 android:title="@string/settings_compilation"
+                android:inputType="none">
+            </EditTextPreference>
+            <EditTextPreference
+                android:id="@+id/settings_detail"
+                android:key="settings_user"
+                android:title="@string/settings_user_detail"
+                android:summary="None"
                 android:inputType="none">
             </EditTextPreference>
         </PreferenceScreen>

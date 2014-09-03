@@ -1,6 +1,7 @@
 package plataformaparaformal.mumbai;
 
 import plataformaparaformal.mumbai.services.Mumbai;
+import plataformaparaformal.mumbai.util.User;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -39,6 +40,7 @@ public class Settings extends PreferenceFragment  {
      * shown on tablets.
      */
     private static final Mumbai mumbai = Mumbai.getInstance();
+    private static final User user = User.getInstance();
     private View view;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -103,7 +105,7 @@ public class Settings extends PreferenceFragment  {
         editTextPreference.setSummary(mumbai.config.versionCompilation);
         editTextPreference.setEnabled(false);
 
-        if(!mumbai.user.isLogged()){
+        if(mumbai.user.isUserLoggedOnSocialNetwork()){
             PreferenceScreen preferenceScreen1 = (PreferenceScreen) findPreference("settings_accountLogged");
             preferenceScreen1.setTitle(R.string.settings_account);
             preferenceScreen1.setSummary(mumbai.user.getUserType().getAccount());
@@ -153,8 +155,6 @@ public class Settings extends PreferenceFragment  {
                 return true;
             }
         });
-
-
 
         preferenceScreen = (PreferenceScreen) findPreference("settings_helperAboutPlataforma");
         preferenceScreen.onDismiss(null);

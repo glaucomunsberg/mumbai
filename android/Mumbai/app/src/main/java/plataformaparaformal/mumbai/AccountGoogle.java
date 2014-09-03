@@ -24,6 +24,7 @@ import android.content.IntentSender.SendIntentException;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 public class AccountGoogle extends Activity implements
         ConnectionCallbacks, OnConnectionFailedListener, OnClickListener,PlusClient.OnPeopleLoadedListener {
@@ -57,6 +58,7 @@ public class AccountGoogle extends Activity implements
         // 1. Context
         // 2. Object to call onConnected and onDisconnected on
         // 3. Object to call onConnectionFailed on
+
         mPlusClient =
                 new PlusClient.Builder(this, this, this).setActions(
                         "http://schemas.google.com/AddActivity", "http://schemas.google.com/BuyActivity")
@@ -153,6 +155,8 @@ public class AccountGoogle extends Activity implements
         task.execute((Void) null);
 
         mPlusClient.loadPeople(this, "me");
+        String accountName = mPlusClient.getAccountName();
+        Toast.makeText(this, accountName + " is connected.", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -183,29 +187,18 @@ public class AccountGoogle extends Activity implements
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.sign_in_button:
-                Log.v(TAG, "Tapped sign in");
-                if (!mPlusClient.isConnected()) {
-                    // Show the dialog as we are now signing in.
-                    mConnectionProgressDialog.show();
-                    // Make sure that we will start the resolution (e.g. fire the
-                    // intent and pop up a dialog for the user) for any errors
-                    // that come in.
-                    mResolveOnFail = true;
-                    // We should always have a connection result ready to resolve,
-                    // so we can start that process.
-                    if (mConnectionResult != null) {
-                        startResolution();
-                    } else {
-                        // If we don't have one though, we can start connect in
-                        // order to retrieve one.
-                        mPlusClient.connect();
-                    }
+        if (view.getId() == R.id.sign_in_button && !mPlusClient.isConnected()) {
+            if (mConnectionResult == null) {
+                mConnectionProgressDialog.show();
+            } else {
+                try {
+                    mConnectionResult.startResolutionForResult(this, OUR_REQUEST_CODE);
+                } catch (SendIntentException e) {
+                    // Tente se conectar novamente.
+                    mConnectionResult = null;
+                    mPlusClient.connect();
                 }
-                break;
-            default:
-                // Unknown id.
+            }
         }
     }
 
@@ -226,6 +219,7 @@ public class AccountGoogle extends Activity implements
         } catch (SendIntentException e) {
             // Any problems, just try to connect() again so we get a new
             // ConnectionResult.
+            Log.v(TAG, e.getLocalizedMessage());
             mPlusClient.connect();
         }
     }

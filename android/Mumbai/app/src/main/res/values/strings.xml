@@ -44,6 +44,7 @@
     <string name="settings_helperInf">Informações Úteis</string>
     <string name="settings_helperAboutPlataforma">Sobre a Plataforma</string>
     <string name="settings_helperAboutPlataformaInfo">Saiba mais sobre paraformalidades</string>
+    <string name="settings_user_detail">ID de Usuário</string>
     <string name="see_title">Detalhes</string>
     <string name="see_subTitle">Cena X</string>
     <string name="see_imageDetail">Imagem Exibição</string>
@@ -81,7 +82,12 @@
     <string name="api_is_on_air">Está no Ar</string>
     <string name="api_what">Aguarde</string>
     <string name="api_is_no_on_air">Não está no Ar</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="api_welcome_back">Bem Vindo Novamente!</string>
+    <string name="api_welcome">Bem Vindo!</string>
+    <string name="api_success_login">Usuário Logado com sucesso!</string>
+    <string name="api_error_login">Oops! Erro ao conectar usuário, tente mais tarde</string>
+    <string name="api_error_login_id">Oops! Erro ao recuperar o ID do usuário, tente mais tarde</string>
+    <string name="api_error_server">Oops! Um erro ocorreu no servidor, tente mais tarde</string>
     <string name="title_activity_account_facebook">AccountFacebook</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

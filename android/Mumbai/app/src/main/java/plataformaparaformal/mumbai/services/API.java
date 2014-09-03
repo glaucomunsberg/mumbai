@@ -24,7 +24,7 @@ public class API implements AsyncResponse {
     private static volatile API instance = null;
 
     private static final Config config = Config.getInstance();
-    private static User user;
+    private static User user = User.getInstance();
 
     private API(){
 
@@ -53,6 +53,34 @@ public class API implements AsyncResponse {
 		return false;
 	}
 
+    public boolean getPersonByEmail(String email){
+        String serverURL = "http://"+config.urlBaseAPI+":"+config.portAPI+"/api/personByEmail?email="+email;
+        new Operator(this,"getPersonByEmail").execute(serverURL);
+        return false;
+    }
+
+    public boolean setPersonBySocialConnection(){
+        String conexao = "N";
+        switch(user.getUserType()){
+            case account_none:
+                conexao = "N";
+                break;
+            case account_google:
+                conexao = "G";
+                break;
+            case account_facebook:
+                conexao = "F";
+                break;
+            case account_twitter:
+                conexao = "T";
+                break;
+        }
+        String serverURL = "http://"+config.urlBaseAPI+":"+config.portAPI+"/api/personByEmail?email="+user.getUserEmail()+"&name="+user.getUserName()+"&conexao_social="+conexao+"&"+user.getUserSocialId();
+        serverURL = serverURL.replaceAll("\\s","%20");
+        new Operator(this,"setPersonBySocialConnection").execute(serverURL);
+        return false;
+    }
+
 	public boolean sendData() {
 		return false;
 	}
@@ -60,10 +88,11 @@ public class API implements AsyncResponse {
 
     @Override
     public void processFinish(JSONObject outPut) {
-        config.principalToast.setText(outPut.toString());
-        config.principalToast.show();
-        String method = null;
-        int status = 0;
+
+        String method   = null;
+        String email    = null;
+        String name     = null;
+        int status      = 0;
         try{
             status = outPut.getInt("status");
             method = outPut.getString("actionResponse");
@@ -79,6 +108,31 @@ public class API implements AsyncResponse {
             }else{
                 config.isOnAir = false;
                 config.principalToast.setText(R.string.api_is_no_on_air);
+                config.principalToast.show();
+            }
+        }
+
+
+        if("setPersonBySocialConnection".equals(method)){
+            if(status == 200){
+                int idAurora = 0;
+                try{
+                    idAurora = outPut.getJSONArray("response").getJSONObject(0).getInt("id");
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+                if(idAurora != 0){
+                    config.principalToast.setText(R.string.api_success_login);
+                    config.principalToast.show();
+                    user.setUserAuroraId(idAurora);
+                }else{
+                    config.principalToast.setText(R.string.api_error_login_id);
+                    config.principalToast.show();
+                }
+
+            }else{
+                config.principalToast.setText(R.string.api_error_login);
                 config.principalToast.show();
             }
         }

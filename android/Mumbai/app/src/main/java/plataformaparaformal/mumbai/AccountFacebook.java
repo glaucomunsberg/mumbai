@@ -56,10 +56,11 @@ public class AccountFacebook extends Activity {
                                 Log.i(TAG, "User ID " + user.getId());
                                 Log.i(TAG, "Email " + user.asMap().get("email"));
 
+                                Log.i(TAG, "Genero " + user.asMap().get("gender"));
                                 Log.i(TAG, "aniversario " + user.getBirthday());
 
-                                mumbai.user.setUserInformation(user.getName(),user.getId(),user.getBirthday(), SocialNetwork.account_facebook,user.asMap().get("email").toString());
-
+                                mumbai.user.setUserInformation(user.getName(),user.getId(),user.getBirthday(), SocialNetwork.account_facebook,user.asMap().get("email").toString(),user.asMap().get("gender").toString());
+                                mumbai.api.setPersonBySocialConnection();
                             }
                         }
                     }).executeAsync();

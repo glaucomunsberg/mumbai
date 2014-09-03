@@ -29,7 +29,7 @@ public class Config {
 	public final String urlHelpCenter = "http://www.plataformaparaformal.com.br/Ajuda";
 	public final String urlHomePage = "http://www.plataformaparaformal.com.br";
 	public final String passwordAPI = "";
-	public final String urlBaseAPI = "192.168.1.109";
+	public final String urlBaseAPI = "192.168.1.110";
     public final String dirFiles = "mumbai/";
     private final String configFile = "mumbai.conf";
     public Toast principalToast;
