@@ -6,18 +6,27 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Calendar;
+
+import plataformaparaformal.mumbai.util.SocialNetwork;
 
 public class Config {
 
     private static volatile Config instance = null;
     public static Calendar lastUpdate = Calendar.getInstance();
     private static File file;
+    ObjectOutputStream toSave;
+    ObjectInputStream saved;
 
     public final int versionNum = 3;
     private final String LOG_TAG = "Config.java";
@@ -32,6 +41,7 @@ public class Config {
 	public final String urlBaseAPI = "192.168.1.110";
     public final String dirFiles = "mumbai/";
     private final String configFile = "mumbai.conf";
+    private final String budapestFile = "budapest.bin";
     public Toast principalToast;
     public AlertDialog.Builder principalAlertDialog;
 	public boolean syncAutomatic;
@@ -50,7 +60,7 @@ public class Config {
             file.mkdirs();
             file = new File(Environment.getExternalStorageDirectory(),dirFiles + configFile);
             if(file.isFile()){
-                loadConfgOnDevice();
+                loadConfigOnDevice();
             }else{
                 try {
                     file = new File(Environment.getExternalStorageDirectory(), dirFiles+configFile);
@@ -73,6 +83,35 @@ public class Config {
             loadConfigDefault();
         }
         isTheFirstTime = true;
+        File arqBudapest = new File("/sdcard/"+dirFiles+budapestFile);
+        if( arqBudapest.isFile() && arqBudapest != null )
+        {
+            Budapest.getInstance().loadDataDefault();
+        }
+        else
+        {
+            try {
+                saved = new ObjectInputStream( new FileInputStream( "/sdcard/"+dirFiles+budapestFile));
+            } catch (IOException e) {
+                Budapest.getInstance().loadDataDefault();
+
+            }
+            Budapest budapestSaved = null;
+            if(saved != null){
+                try {
+                    budapestSaved = (Budapest) saved.readObject();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                    Budapest.getInstance().loadDataDefault();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Budapest.getInstance().loadDataDefault();
+                }
+                if(budapestSaved != null)
+                    Budapest.getInstance().loadDataFromFile(budapestSaved);
+            }
+        }
+
     }
 
     public static Config getInstance(){
@@ -94,12 +133,15 @@ public class Config {
         lastUpdate.set(2014, lastUpdate.MAY, 26);
     }
 
-    private void loadConfgOnDevice(){
+    private void loadConfigOnDevice(){
         BufferedReader fileConfig;
         try {
             fileConfig = new BufferedReader(new FileReader("/sdcard/"+dirFiles+configFile));
             String line;
             String lineBoolean;
+            int infoAuroraId;
+            String infoName=null,infoEmail=null,infoGener =null,infoSocialConnected = null,infoSocialConnectedId = "";
+            boolean isInfoAboutLogged=false;
             int lineOfFile=0;
             while((line = fileConfig.readLine()) != null){
 
@@ -176,6 +218,64 @@ public class Config {
                                 break;
 
                         }
+                        break;
+                    case 6:
+                        if(lineBoolean.equals("true")){
+                            isInfoAboutLogged = true;
+                        }else{
+                            isInfoAboutLogged = false;
+                        }
+                        break;
+                    case 7:
+                        break;
+                    case 8:
+                        if(isInfoAboutLogged){
+                            infoAuroraId = Integer.parseInt(lineBoolean);
+                        }
+                        break;
+                    case 9:
+                        if(isInfoAboutLogged){
+                            infoName = lineBoolean;
+                        }
+                        break;
+                    case 10:
+                        if(isInfoAboutLogged){
+                            infoEmail = lineBoolean;
+                        }
+                        break;
+                    case 11:
+                        if(isInfoAboutLogged){
+                            infoGener = lineBoolean;
+                        }
+                        break;
+                    case 12:
+                        if(isInfoAboutLogged){
+                            infoSocialConnected = lineBoolean;
+                        }
+                        break;
+                    case 13:
+                        infoSocialConnectedId = "";
+                        if(isInfoAboutLogged){
+                            infoSocialConnectedId = lineBoolean;
+                            SocialNetwork socialNetwork = SocialNetwork.account_none;
+                            if(infoSocialConnected.equals("F")){
+                                socialNetwork = SocialNetwork.account_facebook;
+                            }
+                            if(infoSocialConnectedId.equals("N")){
+                                socialNetwork = SocialNetwork.account_none;
+                            }
+                            if(infoSocialConnectedId.equals("G")){
+                                socialNetwork = SocialNetwork.account_google;
+                            }
+                            if(infoSocialConnectedId.equals("T")){
+                                socialNetwork = SocialNetwork.account_twitter;
+                            }
+                            if(infoGener.equals("M")){
+                                infoGener = "male";
+                            }
+                            User.getInstance().setUserInformation(infoName,infoSocialConnectedId,null,socialNetwork,infoEmail,infoGener);
+                        }
+                        break;
 
                 }
                 lineOfFile++;
@@ -220,9 +320,45 @@ public class Config {
             }else{
                 config.append("DataToSend=false\n");
             }
+
+            config.append("LastUpdate="+Integer.toString(lastUpdate.get(Calendar.YEAR))+"/"+Integer.toString(lastUpdate.get(Calendar.MONTH))+"/"+Integer.toString(lastUpdate.get(Calendar.DAY_OF_MONTH))+"\n");
+
+            if(User.getInstance().isUserLoggedOnSocialNetwork()){
+                config.append("userLoggedOnSocialNetwork=true\n");
+            }else{
+                config.append("userLoggedOnSocialNetwork=false\n");
+            }
+
+            if(User.getInstance().isUserLoggedOnServidor()){
+                config.append("userLoggedOnServer=true\n");
+            }else{
+                config.append("userLoggedOnServer=false\n");
+            }
+
+            if(User.getInstance().isUserLoggedOnSocialNetwork()){
+                config.append("userAuroraId="+User.getInstance().getUserAuroraId()+"\n");
+                config.append("userNome="+User.getInstance().getUserName()+"\n");
+                config.append("userEmail="+User.getInstance().getUserEmail()+"\n");
+                config.append("userGenero="+User.getInstance().getUserGender()+"\n");
+                switch (User.getInstance().getUserType()){
+                    case account_facebook:
+                        config.append("userSocialNetwork=F\n");
+                        break;
+                    case account_google:
+                        config.append("userSocialNetwork=G\n");
+                        break;
+                    case account_twitter:
+                        config.append("userSocialNetwork=T\n");
+                        break;
+                    case account_none:
+                    default:
+                        config.append("userSocialNetwork=N\n");
+                        break;
+                }
+                config.append("userSocialNetworkId=" + User.getInstance().getUserSocialId() + "\n");
+            }
             config.flush();
-            config.append("LastUpdate="+Integer.toString(lastUpdate.get(Calendar.YEAR))+"/"+Integer.toString(lastUpdate.get(Calendar.MONTH))+"/"+Integer.toString(lastUpdate.get(Calendar.DAY_OF_MONTH)));
-            config.flush();
+            this.saveBudapest();
         } catch (IOException e) {
             e.printStackTrace();
             Log.e(LOG_TAG, "Erro ao salvar config");
@@ -239,4 +375,20 @@ public class Config {
     public boolean getIsTheFirstTime(){
         return this.isTheFirstTime;
     }
+
+    public void saveBudapest(){
+        try {
+            toSave = new ObjectOutputStream( new FileOutputStream("/sdcard/"+dirFiles+budapestFile) );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            toSave.writeObject(Budapest.getInstance());
+            toSave.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

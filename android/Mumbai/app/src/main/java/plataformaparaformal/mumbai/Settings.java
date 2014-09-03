@@ -1,10 +1,8 @@
 package plataformaparaformal.mumbai;
 
 import plataformaparaformal.mumbai.services.Mumbai;
-import plataformaparaformal.mumbai.util.User;
+import plataformaparaformal.mumbai.services.User;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;

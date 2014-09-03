@@ -1,7 +1,10 @@
-package plataformaparaformal.mumbai.util;
+package plataformaparaformal.mumbai.services;
 
 
-import plataformaparaformal.mumbai.services.Paraformalidade;
+import android.util.Log;
+
+import plataformaparaformal.mumbai.util.SocialNetwork;
+import plataformaparaformal.mumbai.util.TypeBase;
 
 import java.util.ArrayList;
 
@@ -58,6 +61,7 @@ public class User {
     }
 
     public void setUserInformation(String name,String userId,String born,SocialNetwork network, String userEmail,String gender){
+
         this.userDtBorn = born;
         this.userName = name;
         this.userSocialId = userId;
@@ -94,18 +98,9 @@ public class User {
         return userType;
     }
 
-
     public int getUserAuroraId(){
         return userAuroraId;
     }
-	public boolean isLoggedOnServer() {
-
-        if(userAuroraId != 0){
-            return true;
-        }else{
-            return false;
-        }
-	}
 
     public boolean isUserLoggedOnSocialNetwork(){
         if(this.userSocialId.equals("")){
@@ -117,6 +112,7 @@ public class User {
 
 
     public void setUserAuroraId(int idAurora){
+
         this.userAuroraId = idAurora;
     }
 

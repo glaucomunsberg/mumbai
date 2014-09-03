@@ -1,10 +1,10 @@
 package plataformaparaformal.mumbai.services;
 
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
 import plataformaparaformal.mumbai.R;
-import plataformaparaformal.mumbai.util.SocialNetwork;
-import plataformaparaformal.mumbai.util.User;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -16,13 +16,11 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class API implements AsyncResponse {
 
     private static volatile API instance = null;
-
+    private String TAG = "API";
     private static final Config config = Config.getInstance();
     private static User user = User.getInstance();
 
@@ -33,7 +31,7 @@ public class API implements AsyncResponse {
 
     public static API getInstance(){
         if(instance == null){
-            synchronized (Config.class){
+            synchronized (API.class){
                 if(instance == null){
                     instance = new API();
                 }
@@ -75,7 +73,7 @@ public class API implements AsyncResponse {
                 conexao = "T";
                 break;
         }
-        String serverURL = "http://"+config.urlBaseAPI+":"+config.portAPI+"/api/personByEmail?email="+user.getUserEmail()+"&name="+user.getUserName()+"&conexao_social="+conexao+"&"+user.getUserSocialId();
+        String serverURL = "http://"+config.urlBaseAPI+":"+config.portAPI+"/api/setPersonBySocialConnection?email="+user.getUserEmail()+"&name="+user.getUserName()+"&social_connection="+conexao+"&social_connection_id="+user.getUserSocialId()+"&gender="+user.getUserGender();
         serverURL = serverURL.replaceAll("\\s","%20");
         new Operator(this,"setPersonBySocialConnection").execute(serverURL);
         return false;
@@ -104,10 +102,12 @@ public class API implements AsyncResponse {
             if(status == 200){
                 config.isOnAir = true;
                 config.principalToast.setText(R.string.api_is_on_air);
+                config.principalToast.setDuration(Toast.LENGTH_SHORT);
                 config.principalToast.show();
             }else{
                 config.isOnAir = false;
                 config.principalToast.setText(R.string.api_is_no_on_air);
+                config.principalToast.setDuration(Toast.LENGTH_SHORT);
                 config.principalToast.show();
             }
         }
@@ -121,17 +121,31 @@ public class API implements AsyncResponse {
                 }catch (JSONException e){
                     e.printStackTrace();
                 }
+                Log.i(TAG, "OutPut: "+outPut.toString());
+                try {
+                    Log.i(TAG, "Response: "+outPut.getJSONArray("response").getJSONObject(0).toString());
+                } catch (JSONException e) {
+                    Log.i(TAG,"erro no Response");
+                }
+
+                try {
+                    Log.i(TAG, "Response: "+outPut.getJSONArray("response").getJSONObject(0).getInt("id"));
+                } catch (JSONException e) {
+                    Log.i(TAG,"erro no id");
+                }
 
                 if(idAurora != 0){
                     config.principalToast.setText(R.string.api_success_login);
                     config.principalToast.show();
                     user.setUserAuroraId(idAurora);
+
                 }else{
                     config.principalToast.setText(R.string.api_error_login_id);
                     config.principalToast.show();
                 }
 
             }else{
+                Log.i(TAG,outPut.toString());
                 config.principalToast.setText(R.string.api_error_login);
                 config.principalToast.show();
             }

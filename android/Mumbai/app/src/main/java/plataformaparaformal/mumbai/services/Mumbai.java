@@ -2,8 +2,6 @@ package plataformaparaformal.mumbai.services;
 
 import com.google.android.gms.maps.GoogleMap;
 
-import plataformaparaformal.mumbai.util.User;
-
 public class Mumbai {
 
     private static volatile Mumbai instance = null;
@@ -27,7 +25,7 @@ public class Mumbai {
 
     public static Mumbai getInstance(){
         if(instance == null){
-            synchronized (Config.class){
+            synchronized (Mumbai.class){
                 if(instance == null){
                     instance = new Mumbai();
                 }
