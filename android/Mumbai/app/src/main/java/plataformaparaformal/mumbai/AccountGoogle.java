@@ -1,233 +1,315 @@
 package plataformaparaformal.mumbai;
-
-import java.io.IOException;
-
-import com.google.android.gms.auth.GoogleAuthException;
-import com.google.android.gms.auth.GoogleAuthUtil;
-import com.google.android.gms.auth.UserRecoverableAuthException;
-import com.google.android.gms.common.Scopes;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
-import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
-import com.google.android.gms.plus.PlusClient;
-import com.google.android.gms.plus.PlusClient.OnAccessRevokedListener;
-import com.google.android.gms.plus.model.people.Person;
-import com.google.android.gms.plus.model.people.PersonBuffer;
-
+import android.app.Activity;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class AccountGoogle extends Activity implements
-        ConnectionCallbacks, OnConnectionFailedListener, OnClickListener,PlusClient.OnPeopleLoadedListener {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
 
-    private static final String TAG = "SignInTestActivity";
+import java.io.InputStream;
 
-    // A magic number we will use to know that our sign-in error
-    // resolution activity has completed.
-    private static final int OUR_REQUEST_CODE = 49404;
+public class AccountGoogle extends Activity implements View.OnClickListener,
+        ConnectionCallbacks, OnConnectionFailedListener {
 
-    // The core Google+ client.
-    private PlusClient mPlusClient;
+    private static final int RC_SIGN_IN = 0;
+    // Logcat tag
+    private static final String TAG = "MainActivity";
 
-    // A flag to stop multiple dialogues appearing for the user.
-    private boolean mResolveOnFail;
+    // Profile pic image size in pixels
+    private static final int PROFILE_PIC_SIZE = 400;
 
-    // We can store the connection result from a failed connect()
-    // attempt in order to make the application feel a bit more
-    // responsive for the user.
+    // Google client to interact with Google API
+    private GoogleApiClient mGoogleApiClient;
+
+    /**
+     * A flag indicating that a PendingIntent is in progress and prevents us
+     * from starting further intents.
+     */
+    private boolean mIntentInProgress;
+
+    private boolean mSignInClicked;
+
     private ConnectionResult mConnectionResult;
 
-    // A progress dialog to display when the user is connecting in
-    // case there is a delay in any of the dialogs being ready.
-    private ProgressDialog mConnectionProgressDialog;
+    private SignInButton btnSignIn;
+    private Button btnSignOut, btnRevokeAccess;
+    private ImageView imgProfilePic;
+    private TextView txtName, txtEmail;
+    private LinearLayout llProfileLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_google);
-        // We pass through this for all three arguments, specifying the:
-        // 1. Context
-        // 2. Object to call onConnected and onDisconnected on
-        // 3. Object to call onConnectionFailed on
 
-        mPlusClient =
-                new PlusClient.Builder(this, this, this).setActions(
-                        "http://schemas.google.com/AddActivity", "http://schemas.google.com/BuyActivity")
-                        .setScopes(Scopes.PLUS_LOGIN) // Space separated list of scopes
-                        .build();
+        btnSignIn = (SignInButton) findViewById(R.id.sign_in_button);
+        btnSignOut = (Button) findViewById(R.id.btn_sign_out);
+        btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
+        imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
+        txtName = (TextView) findViewById(R.id.txtName);
+        txtEmail = (TextView) findViewById(R.id.txtEmail);
+        llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
 
-        // We use mResolveOnFail as a flag to say whether we should trigger
-        // the resolution of a connectionFailed ConnectionResult.
-        mResolveOnFail = false;
+        // Button click listeners
+        btnSignIn.setOnClickListener(this);
+        btnSignOut.setOnClickListener(this);
+        btnRevokeAccess.setOnClickListener(this);
 
-        // Connect our sign in, sign out and disconnect buttons.
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
-
-        // Configure the ProgressDialog that will be shown if there is a
-        // delay in presenting the user with the next sign in step.
-        mConnectionProgressDialog = new ProgressDialog(this);
-        mConnectionProgressDialog.setMessage("Signing in...");
+        // Initializing google plus api client
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this).addApi(Plus.API)
+                .build();
     }
 
-    @Override
     protected void onStart() {
         super.onStart();
-        Log.v(TAG, "Start");
-        // Every time we start we want to try to connect. If it
-        // succeeds we'll get an onConnected() callback. If it
-        // fails we'll get onConnectionFailed(), with a result!
-        mPlusClient.connect();
+        mGoogleApiClient.connect();
     }
 
-    @Override
     protected void onStop() {
         super.onStop();
-        Log.v(TAG, "Stop");
-        // It can be a little costly to keep the connection open
-        // to Google Play Services, so each time our activity is
-        // stopped we should disconnect.
-        mPlusClient.disconnect();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
     }
 
+    /**
+     * Button on click listener
+     * */
     @Override
-    public void onConnectionFailed(ConnectionResult result) {
-        Log.v(TAG, "ConnectionFailed");
-        // Most of the time, the connection will fail with a
-        // user resolvable result. We can store that in our
-        // mConnectionResult property ready for to be used
-        // when the user clicks the sign-in button.
-        if (result.hasResolution()) {
-            mConnectionResult = result;
-            if (mResolveOnFail) {
-                // This is a local helper function that starts
-                // the resolution of the problem, which may be
-                // showing the user an account chooser or similar.
-                startResolution();
-            }
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sign_in_button:
+                // Signin button clicked
+                signInWithGplus();
+                break;
+            case R.id.btn_sign_out:
+                // Signout button clicked
+                signOutFromGplus();
+                break;
+            case R.id.btn_revoke_access:
+                // Revoke access button clicked
+                revokeGplusAccess();
+                break;
         }
     }
 
     @Override
     public void onConnected(Bundle bundle) {
-        // Yay! We can get the oAuth 2.0 access token we are using.
-        Log.v(TAG, "Connected. Yay!");
+        mSignInClicked = false;
+        Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
 
-        // Turn off the flag, so if the user signs out they'll have to
-        // tap to sign in again.
-        mResolveOnFail = false;
+        // Get user's information
+        getProfileInformation();
 
-        // Hide the progress dialog if its showing.
-        mConnectionProgressDialog.dismiss();
-
-        // Retrieve the oAuth 2.0 access token.
-        final Context context = this.getApplicationContext();
-        AsyncTask task = new AsyncTask() {
-            @Override
-            protected Object doInBackground(Object... params) {
-                String scope = "oauth2:" + Scopes.PLUS_LOGIN;
-                try {
-                    // We can retrieve the token to check via
-                    // tokeninfo or to pass to a service-side
-                    // application.
-                    String token = GoogleAuthUtil.getToken(context,
-                            mPlusClient.getAccountName(), scope);
-                } catch (UserRecoverableAuthException e) {
-                    // This error is recoverable, so we could fix this
-                    // by displaying the intent to the user.
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (GoogleAuthException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        };
-        task.execute((Void) null);
-
-        mPlusClient.loadPeople(this, "me");
-        String accountName = mPlusClient.getAccountName();
-        Toast.makeText(this, accountName + " is connected.", Toast.LENGTH_LONG).show();
+        if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+            Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
+            Log.v("NOME",currentPerson.getDisplayName()) ;
+            //String personPhoto = currentPerson.getImage();
+            //String personGooglePlusProfile = currentPerson.getUrl();
+        }else{
+            Log.v("NOME","a") ;
+        }
+        // Update the UI after signin
+        updateUI(true);
     }
 
     @Override
-    public void onDisconnected() {
-        // Bye!
-        Log.v(TAG, "Disconnected. Bye!");
+    public void onConnectionSuspended(int i) {
+        mGoogleApiClient.connect();
+        updateUI(false);
     }
 
+    @Override
     protected void onActivityResult(int requestCode, int responseCode,
                                     Intent intent) {
-        Log.v(TAG, "ActivityResult: " + requestCode);
-        if (requestCode == OUR_REQUEST_CODE && responseCode == RESULT_OK) {
-            // If we have a successful result, we will want to be able to
-            // resolve any further errors, so turn on resolution with our
-            // flag.
-            mResolveOnFail = true;
-            // If we have a successful result, lets call connect() again. If
-            // there are any more errors to resolve we'll get our
-            // onConnectionFailed, but if not, we'll get onConnected.
-            mPlusClient.connect();
-        } else if (requestCode == OUR_REQUEST_CODE && responseCode != RESULT_OK) {
-            // If we've got an error we can't resolve, we're no
-            // longer in the midst of signing in, so we can stop
-            // the progress spinner.
-            mConnectionProgressDialog.dismiss();
+        if (requestCode == RC_SIGN_IN) {
+            if (responseCode != RESULT_OK) {
+                mSignInClicked = false;
+            }
+
+            mIntentInProgress = false;
+
+            if (!mGoogleApiClient.isConnecting()) {
+                mGoogleApiClient.connect();
+            }
         }
     }
-
     @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.sign_in_button && !mPlusClient.isConnected()) {
-            if (mConnectionResult == null) {
-                mConnectionProgressDialog.show();
-            } else {
-                try {
-                    mConnectionResult.startResolutionForResult(this, OUR_REQUEST_CODE);
-                } catch (SendIntentException e) {
-                    // Tente se conectar novamente.
-                    mConnectionResult = null;
-                    mPlusClient.connect();
-                }
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        if (!connectionResult.hasResolution()) {
+            GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this,
+                    0).show();
+            return;
+        }
+
+        if (!mIntentInProgress) {
+            // Store the ConnectionResult for later usage
+            mConnectionResult = connectionResult;
+
+            if (mSignInClicked) {
+                // The user has already clicked 'sign-in' so we attempt to
+                // resolve all
+                // errors until the user is signed in, or they cancel.
+                resolveSignInError();
             }
         }
     }
 
     /**
-     * A helper method to flip the mResolveOnFail flag and start the resolution
-     * of the ConnenctionResult from the failed connect() call.
-     */
-    private void startResolution() {
-        try {
-            // Don't start another resolution now until we have a
-            // result from the activity we're about to start.
-            mResolveOnFail = false;
-            // If we can resolve the error, then call start resolution
-            // and pass it an integer tag we can use to track. This means
-            // that when we get the onActivityResult callback we'll know
-            // its from being started here.
-            mConnectionResult.startResolutionForResult(this, OUR_REQUEST_CODE);
-        } catch (SendIntentException e) {
-            // Any problems, just try to connect() again so we get a new
-            // ConnectionResult.
-            Log.v(TAG, e.getLocalizedMessage());
-            mPlusClient.connect();
+     * Updating the UI, showing/hiding buttons and profile layout
+     * */
+    private void updateUI(boolean isSignedIn) {
+        if (isSignedIn) {
+            btnSignIn.setVisibility(View.GONE);
+            btnSignOut.setVisibility(View.VISIBLE);
+            btnRevokeAccess.setVisibility(View.VISIBLE);
+            //llProfileLayout.setVisibility(View.VISIBLE);
+        } else {
+            btnSignIn.setVisibility(View.VISIBLE);
+            btnSignOut.setVisibility(View.GONE);
+            btnRevokeAccess.setVisibility(View.GONE);
+            //llProfileLayout.setVisibility(View.GONE);
         }
     }
 
-    @Override
-    public void onPeopleLoaded(ConnectionResult connectionResult, PersonBuffer persons, String s) {
-        //if (status.getErrorCode() == ConnectionResult.SUCCESS) {
-         //   Log.d(TAG, "Display Name: " + person.getDisplayName());
-        //}
+
+    /**
+     * Sign-in into google
+     * */
+    private void signInWithGplus() {
+        if (!mGoogleApiClient.isConnecting()) {
+            mSignInClicked = true;
+            resolveSignInError();
+        }
+    }
+
+    /**
+      * Sign-out from google
+      * */
+    private void signOutFromGplus() {
+        if (mGoogleApiClient.isConnected()) {
+            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+            mGoogleApiClient.disconnect();
+            mGoogleApiClient.connect();
+            updateUI(false);
+        }
+    }
+    /**
+     * Revoking access from google
+     * */
+    private void revokeGplusAccess() {
+        if (mGoogleApiClient.isConnected()) {
+            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+            Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient)
+                    .setResultCallback(new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status arg0) {
+                            Log.e(TAG, "User access revoked!");
+                            mGoogleApiClient.connect();
+                            updateUI(false);
+                        }
+
+                    });
+        }
+    }
+    /**
+     * Method to resolve any signin errors
+     * */
+    private void resolveSignInError() {
+        if (mConnectionResult != null && mConnectionResult.hasResolution()) {
+            try {
+                mIntentInProgress = true;
+                mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
+            } catch (IntentSender.SendIntentException e) {
+                mIntentInProgress = false;
+                mGoogleApiClient.connect();
+            }
+        }
+    }
+    /**
+     * Fetching user's information name, email, profile pic
+     * */
+    private void getProfileInformation() {
+        try {
+            if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+                Person currentPerson = Plus.PeopleApi
+                        .getCurrentPerson(mGoogleApiClient);
+                String personName = currentPerson.getDisplayName();
+                String personPhotoUrl = currentPerson.getImage().getUrl();
+                String personGooglePlusProfile = currentPerson.getUrl();
+                String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
+
+                Log.e(TAG, "Name: " + personName + ", plusProfile: "
+                        + personGooglePlusProfile + ", email: " + email
+                        + ", Image: " + personPhotoUrl);
+
+                txtName.setText(personName);
+                txtEmail.setText(email);
+
+                // by default the profile url gives 50x50 px image only
+                // we can replace the value with whatever dimension we want by
+                // replacing sz=X
+                personPhotoUrl = personPhotoUrl.substring(0,
+                        personPhotoUrl.length() - 2)
+                        + PROFILE_PIC_SIZE;
+
+                new LoadProfileImage(imgProfilePic).execute(personPhotoUrl);
+
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        "Person information is null", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Background Async task to load user profile picture from url
+     * */
+    private class LoadProfileImage extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public LoadProfileImage(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 }

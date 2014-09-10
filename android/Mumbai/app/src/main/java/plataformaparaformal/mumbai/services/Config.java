@@ -231,6 +231,7 @@ public class Config {
                     case 8:
                         if(isInfoAboutLogged){
                             infoAuroraId = Integer.parseInt(lineBoolean);
+                            User.getInstance().setUserAuroraId(infoAuroraId);
                         }
                         break;
                     case 9:
