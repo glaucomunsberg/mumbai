@@ -8,14 +8,7 @@
             android:title="@string/settings_accounts"
             android:summary="@string/settings_accountNoBound"
             android:persistent="false">
-            <PreferenceScreen
-                android:id="@+id/setting_accountGoogle"
-                android:key="setting_accountGoogle"
-                android:title="@string/settings_accountGoogle"
-                android:icon="@drawable/ic_account_google"
-                android:summary="@string/settings_accountNoBound"
-                android:editable="false">
-            </PreferenceScreen>
+
             <PreferenceScreen
                 android:id="@+id/setting_accountFacebook"
                 android:key="setting_accountFacebook"
@@ -27,10 +20,19 @@
             </PreferenceScreen>
             <PreferenceScreen
                 android:id="@+id/setting_accountTwitter"
+                android:key="setting_accountTwitter"
                 android:title="@string/settings_accountTwitter"
                 android:icon="@drawable/ic_account_twitter"
                 android:summary="@string/settings_accountNoBound"
-                android:inputType="none"
+                android:focusable="false"
+                android:editable="false">
+            </PreferenceScreen>
+            <PreferenceScreen
+                android:id="@+id/setting_accountGoogle"
+                android:key="setting_accountGoogle"
+                android:title="@string/settings_accountGoogle"
+                android:icon="@drawable/ic_account_google"
+                android:summary="@string/settings_accountNoBound"
                 android:editable="false">
             </PreferenceScreen>
         </PreferenceScreen>

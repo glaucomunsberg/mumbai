@@ -262,13 +262,13 @@ public class Config {
                             if(infoSocialConnected.equals("F")){
                                 socialNetwork = SocialNetwork.account_facebook;
                             }
-                            if(infoSocialConnectedId.equals("N")){
+                            if(infoSocialConnected.equals("N")){
                                 socialNetwork = SocialNetwork.account_none;
                             }
-                            if(infoSocialConnectedId.equals("G")){
+                            if(infoSocialConnected.equals("G")){
                                 socialNetwork = SocialNetwork.account_google;
                             }
-                            if(infoSocialConnectedId.equals("T")){
+                            if(infoSocialConnected.equals("T")){
                                 socialNetwork = SocialNetwork.account_twitter;
                             }
                             if(infoGener.equals("M")){
@@ -352,8 +352,10 @@ public class Config {
                         config.append("userSocialNetwork=T\n");
                         break;
                     case account_none:
-                    default:
                         config.append("userSocialNetwork=N\n");
+                        break;
+                    default:
+                        config.append("userSocialNetwork=aaa\n");
                         break;
                 }
                 config.append("userSocialNetworkId=" + User.getInstance().getUserSocialId() + "\n");

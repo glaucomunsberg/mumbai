@@ -103,13 +103,16 @@ public class User {
     }
 
     public boolean isUserLoggedOnSocialNetwork(){
-        if(this.userSocialId.equals("")){
+        if(userType == SocialNetwork.account_none){
             return false;
         }else{
             return true;
         }
     }
 
+    public void setNetworkUsed(SocialNetwork socialNetwork){
+        userType = socialNetwork;
+    }
 
     public void setUserAuroraId(int idAurora){
 

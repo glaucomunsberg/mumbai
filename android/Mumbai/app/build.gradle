@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:20.0.0'
     compile 'com.google.android.gms:play-services:4.+'
     compile project(':facebook')
+    compile files('libs/twitter4j-core-4.0.2.jar')
 }

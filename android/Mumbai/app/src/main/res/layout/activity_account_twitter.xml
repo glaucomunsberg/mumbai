@@ -1,16 +1,105 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="plataformaparaformal.mumbai.AccountFacebook">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
-    <TextView
-        android:text="Twitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
-</RelativeLayout>
+            <Button android:id="@+id/btnLoginTwitter"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/account_login_twitter"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="30dip"/>
+                 
+                <!-- user name label -->
+            <TextView android:id="@+id/lblUserName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:layout_marginTop="30dip"/>
+
+            <TextView android:id="@+id/lblDescription"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:layout_marginTop="30dip"
+                android:visibility="gone"/>
+                 
+                <!-- Tweet EditText -->
+            <TextView
+                android:id="@+id/lblEmail"
+                android:text="@string/settings_email"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:layout_marginTop="30dip"
+                android:visibility="gone"/>
+            <EditText
+                android:id="@+id/txtUserEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:autoLink="email"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/lblGender"
+                android:text="@string/settings_gender"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:layout_marginTop="30dip"
+                android:visibility="gone"/>
+            <Spinner
+                android:id="@+id/txtUserGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/lblBorn"
+                android:text="@string/settings_born"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:layout_marginTop="30dip"
+                android:visibility="gone"/>
+            <DatePicker
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtUserBorn"
+                android:visibility="gone"/>
+
+            <Button android:id="@+id/btnSaveUser"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/account_save_twitter"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:visibility="gone"/>
+                 
+                <!-- Twitter Logout button -->
+            <Button android:id="@+id/btnLogoutTwitter"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/account_loggout_twitter"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="50dip"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+       
+</LinearLayout>

@@ -29,4 +29,9 @@
         <item>Câmera</item>
         <item>Arquivos</item>
     </string-array>
+    <string-array name="gender">
+        <item>Masculino</item>
+        <item>Feminino</item>
+        <item>Não Declarado</item>
+    </string-array>
 </resources>

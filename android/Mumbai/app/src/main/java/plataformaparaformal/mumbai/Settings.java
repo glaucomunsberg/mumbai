@@ -37,7 +37,7 @@ public class Settings extends PreferenceFragment  {
      * as a master/detail two-pane view on tablets. When true, a single pane is
      * shown on tablets.
      */
-    private static final Mumbai mumbai = Mumbai.getInstance();
+    private static Mumbai mumbai = Mumbai.getInstance();
     private static final User user = User.getInstance();
     private View view;
 
@@ -102,6 +102,9 @@ public class Settings extends PreferenceFragment  {
         editTextPreference = (EditTextPreference) findPreference("settings_compilation");
         editTextPreference.setSummary(mumbai.config.versionCompilation);
         editTextPreference.setEnabled(false);
+        editTextPreference = (EditTextPreference) findPreference("settings_user");
+        editTextPreference.setSummary((mumbai.user.getUserAuroraId()==0?"":String.format("%d",mumbai.user.getUserAuroraId())));
+        editTextPreference.setEnabled(false);
 
         if(mumbai.user.isUserLoggedOnSocialNetwork()){
             PreferenceScreen preferenceScreen1 = (PreferenceScreen) findPreference("settings_accountLogged");
@@ -125,7 +128,7 @@ public class Settings extends PreferenceFragment  {
                     preferenceScreen.setSummary(R.string.settings_accountBound);
                     break;
                 case account_twitter:
-                    preferenceScreen = (PreferenceScreen) findPreference("settings_accountTwitter");
+                    preferenceScreen = (PreferenceScreen) findPreference("setting_accountTwitter");
                     preferenceScreen.setSummary(R.string.settings_accountBound);
                     break;
                 case account_none:
@@ -149,6 +152,16 @@ public class Settings extends PreferenceFragment  {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(getActivity(), AccountFacebook.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        preferenceScreen = (PreferenceScreen) findPreference("setting_accountTwitter");
+        preferenceScreen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), AccountTwitter.class);
                 startActivity(intent);
                 return true;
             }
@@ -201,13 +214,27 @@ public class Settings extends PreferenceFragment  {
     }
 
     @Override
+    public void onResume(){
+        CheckBoxPreference ckeck = (CheckBoxPreference) findPreference("settings_sync");
+        ckeck.setChecked(mumbai.config.syncAutomatic);
+
+        ckeck = (CheckBoxPreference) findPreference("setting_notification");
+        ckeck.setChecked(mumbai.config.notificationOnScree);
+
+        ckeck = (CheckBoxPreference) findPreference("settings_imgHighResolution");
+        ckeck.setChecked(mumbai.config.seeFullImage);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if(mumbai.config.saveConfig()){
-            mumbai.config.principalToast.setText(R.string.alert_settings_saveSuccess);
-        }else{
-            mumbai.config.principalToast.setText(R.string.alert_settings_notSaveSucess);
-        };
-        mumbai.config.principalToast.show();
+        if(mumbai != null){
+            if(mumbai.config.saveConfig()){
+                mumbai.config.principalToast.setText(R.string.alert_settings_saveSuccess);
+            }else{
+                mumbai.config.principalToast.setText(R.string.alert_settings_notSaveSucess);
+            };
+            mumbai.config.principalToast.show();
+        }
     }
 }

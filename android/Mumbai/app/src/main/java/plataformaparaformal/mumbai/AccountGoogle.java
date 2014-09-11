@@ -1,4 +1,5 @@
 package plataformaparaformal.mumbai;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -49,7 +50,7 @@ public class AccountGoogle extends Activity implements View.OnClickListener,
     private boolean mSignInClicked;
 
     private ConnectionResult mConnectionResult;
-
+    private ActionBar actionBar;
     private SignInButton btnSignIn;
     private Button btnSignOut, btnRevokeAccess;
     private ImageView imgProfilePic;
@@ -60,6 +61,9 @@ public class AccountGoogle extends Activity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_google);
+
+        actionBar = this.getActionBar();
+        actionBar.setTitle(R.string.settings_accountGoogle);
 
         btnSignIn = (SignInButton) findViewById(R.id.sign_in_button);
         btnSignOut = (Button) findViewById(R.id.btn_sign_out);

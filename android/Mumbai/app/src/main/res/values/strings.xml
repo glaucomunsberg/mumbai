@@ -37,14 +37,17 @@
     <string name="settings_compilation">Compilação</string>
     <string name="settings_accountBound">Conta Vinculada</string>
     <string name="settings_accountNoBound">Sem Vinculo</string>
-    <string name="settings_accountGoogle">Google Account</string>
-    <string name="settings_accountFacebook">Facebook Account</string>
-    <string name="settings_accountTwitter">Twitter API Account</string>
+    <string name="settings_accountGoogle">Conta Google</string>
+    <string name="settings_accountFacebook">Conta Facebook</string>
+    <string name="settings_accountTwitter">Conta Twitter</string>
     <string name="settings_helper">Ajudar</string>
     <string name="settings_helperInf">Informações Úteis</string>
     <string name="settings_helperAboutPlataforma">Sobre a Plataforma</string>
     <string name="settings_helperAboutPlataformaInfo">Saiba mais sobre paraformalidades</string>
     <string name="settings_user_detail">ID de Usuário</string>
+    <string name="settings_email">Email</string>
+    <string name="settings_gender">Gênero</string>
+    <string name="settings_born">Data de Nascimento</string>
     <string name="see_title">Detalhes</string>
     <string name="see_subTitle">Cena X</string>
     <string name="see_imageDetail">Imagem Exibição</string>
@@ -91,8 +94,16 @@
     <string name="title_activity_account_facebook">AccountFacebook</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
     <string name="account_logout_from_google">Logout from Google</string>
     <string name="account_revoke_access">Revoke Access</string>
+    <string name="account_welcome_back">Bem Vindo</string>
+    <string name="account_logged_twitter">Você já está logado</string>
 
+    <string name="account_login_twitter">Logar com  conta</string>
+    <string name="account_not_logged_twitter">Utilize uma conta Twitter</string>
+    <string name="account_without_email_twitter">Insira um email válido</string>
+    <string name="account_internet_offline_twitter">Logar com  conta</string>
+    <string name="account_loggout_twitter">Desconectar conta</string>
+    <string name="account_complete_twitter">Complete seus dados para finalizar seu cadastro</string>
+    <string name="account_save_twitter">Finalizar Cadastro</string>
 </resources>

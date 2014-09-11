@@ -1,5 +1,6 @@
 package plataformaparaformal.mumbai;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,12 +25,14 @@ public class AccountFacebook extends Activity {
 
     private String TAG = "AccountFacebook";
     private Mumbai mumbai = Mumbai.getInstance();
-
+    private ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_facebook);
 
+        actionBar = this.getActionBar();
+        actionBar.setTitle(R.string.settings_accountFacebook);
 
 
         LoginButton authButton = (LoginButton) findViewById(R.id.authButton);
@@ -86,9 +89,7 @@ public class AccountFacebook extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
         return super.onOptionsItemSelected(item);
     }
 }

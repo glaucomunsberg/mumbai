@@ -138,6 +138,12 @@ public class API implements AsyncResponse {
                     config.principalToast.setText(R.string.api_success_login);
                     config.principalToast.show();
                     user.setUserAuroraId(idAurora);
+                    if(config.saveConfig()){
+                        config.principalToast.setText(R.string.alert_settings_saveSuccess);
+                    }else{
+                        config.principalToast.setText(R.string.alert_settings_notSaveSucess);
+                    };
+                    config.principalToast.show();
 
                 }else{
                     config.principalToast.setText(R.string.api_error_login_id);
