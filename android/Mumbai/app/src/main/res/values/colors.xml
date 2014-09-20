@@ -7,4 +7,6 @@
     <color name="blue">#2e7bcc</color>
     <color name="blue_strong">#2e63cc</color>
     <color name="white">#FFFFFF</color>
+    <color name="white_ice">#F3F3F3</color>
+
 </resources>

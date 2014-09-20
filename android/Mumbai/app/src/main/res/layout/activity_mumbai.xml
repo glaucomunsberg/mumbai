@@ -25,6 +25,7 @@
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="left"
+        android:background="#fff3f3f3"
         android:name="plataformaparaformal.mumbai.NavigationDrawerFragment"
         tools:layout="@layout/nav_drawer" />
 

@@ -20,7 +20,7 @@
                 android:layout_marginLeft="10dip"
                 android:layout_marginRight="10dip"
                 android:layout_marginTop="30dip"/>
-                 
+              
                 <!-- user name label -->
             <TextView android:id="@+id/lblUserName"
                 android:layout_width="fill_parent"

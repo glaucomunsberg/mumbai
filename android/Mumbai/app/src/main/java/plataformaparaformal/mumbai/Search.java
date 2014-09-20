@@ -53,6 +53,18 @@ public class Search extends Fragment {
         listView = (ListView) view.findViewById( R.id.search_paraformalidade_menu );
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, menu_itens);
+        Integer[] imageId = {
+                R.drawable.ic_action_labels,
+                R.drawable.ic_action_labels,
+                R.drawable.ic_action_labels,
+                R.drawable.ic_action_labels,
+                R.drawable.ic_action_labels,
+                R.drawable.ic_action_labels,
+                R.drawable.ic_action_labels,
+                R.drawable.ic_action_labels,
+                R.drawable.ic_action_labels,
+                R.drawable.ic_action_labels
+        };
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

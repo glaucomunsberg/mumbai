@@ -215,6 +215,7 @@ public class Settings extends PreferenceFragment  {
 
     @Override
     public void onResume(){
+        super.onResume();
         CheckBoxPreference ckeck = (CheckBoxPreference) findPreference("settings_sync");
         ckeck.setChecked(mumbai.config.syncAutomatic);
 

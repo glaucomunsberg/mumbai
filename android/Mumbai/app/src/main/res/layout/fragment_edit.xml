@@ -19,7 +19,7 @@
             android:contentDescription="@string/edit_imgDetail"
             android:minHeight="150dp"
             android:minWidth="150dp"
-            android:src="@drawable/ic_paraformalidade">
+            android:src="@drawable/ic_camera">
         </ImageView>
         <EditText
             android:id="@+id/edit_description"

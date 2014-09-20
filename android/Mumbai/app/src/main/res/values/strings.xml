@@ -99,7 +99,7 @@
     <string name="account_welcome_back">Bem Vindo</string>
     <string name="account_logged_twitter">Você já está logado</string>
 
-    <string name="account_login_twitter">Logar com  conta</string>
+    <string name="account_login_twitter">Logar</string>
     <string name="account_not_logged_twitter">Utilize uma conta Twitter</string>
     <string name="account_without_email_twitter">Insira um email válido</string>
     <string name="account_internet_offline_twitter">Logar com  conta</string>
