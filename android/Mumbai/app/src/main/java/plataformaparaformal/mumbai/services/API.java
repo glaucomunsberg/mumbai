@@ -10,6 +10,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,6 +51,12 @@ public class API implements AsyncResponse {
         new Operator(this,"isOnAir").execute(serverURL);
 		return false;
 	}
+
+    public boolean getParafromalByLocalization(String lat, String lng){
+        String serverURL = "http://"+config.urlBaseAPI+":"+config.portAPI+"/api/paraformalidadeByLocalization?lat="+lat+"&lng="+lng;
+        new Operator(this,"paraformalidadeByLocalization").execute(serverURL);
+        return false;
+    }
 
     public boolean getPersonByEmail(String email){
         String serverURL = "http://"+config.urlBaseAPI+":"+config.portAPI+"/api/personByEmail?email="+email;
@@ -112,7 +119,6 @@ public class API implements AsyncResponse {
             }
         }
 
-
         if("setPersonBySocialConnection".equals(method)){
             if(status == 200){
                 int idAurora = 0;
@@ -153,6 +159,69 @@ public class API implements AsyncResponse {
             }else{
                 Log.i(TAG,outPut.toString());
                 config.principalToast.setText(R.string.api_error_login);
+                config.principalToast.show();
+            }
+        }
+
+        if("paraformalidadeByLocalization".equals(method)){
+            if(status == 200){
+                Log.i(TAG,outPut.toString());
+                JSONArray getArray = null;
+                try {
+                    getArray = outPut.getJSONArray("response");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.i(TAG,"Erro no processamento: "+e.getMessage());
+                }
+                int id;
+                String lnt;
+                String lat;
+                String description;
+                String link;
+                String imageURL;
+                int registeredAmountId;
+                int shiftOccurrenceId;
+                String dt_ocorrency;
+                String dt_registration;
+                int registeredActivityId;
+                int numberBodyId;
+                String publicContribution;
+                int equipmentMobilityId;
+                int localizationSpaceId;
+                int equipmentScaleId;
+                int cena_id;
+                int positionBodyId;
+                for(int i = 0; i < getArray.length(); i++)
+                {
+                    try {
+                        JSONObject objects = getArray.getJSONObject(i);
+                        id                      = objects.getInt("id");
+                        lnt                     = objects.getString("geo_longitude");
+                        lat                     = objects.getString("geo_latitude");
+                        description             = objects.getString("description");
+                        link                    = objects.getString("link");
+                        registeredAmountId      = objects.getInt("quantidade_registrada_id");
+                        registeredActivityId    = objects.getInt("atividade_registrada_id");
+                        shiftOccurrenceId       = objects.getInt("turno_ocorrencia_id");
+                        dt_ocorrency            = objects.getString("dt_ocorrencia");
+                        dt_registration         = objects.getString("dt_cadastro");
+                        numberBodyId            = objects.getInt("corpo_numero_id");
+                        publicContribution      = objects.getString("contribuicao_publica");
+                        equipmentMobilityId     = objects.getInt("equipamento_mobilidade_id");
+                        localizationSpaceId     = objects.getInt("espaco_localizacao_id");
+                        equipmentScaleId        = objects.getInt("equipamento_porte_id");
+                        cena_id                 = objects.getInt("cena_id");
+                        positionBodyId          = objects.getInt("corpo_posicao_id");
+                        imageURL                = objects.getString("nome_gerado");
+
+                    } catch (JSONException e) {
+                        Log.i(TAG, "Erro na iteração: " + e.getMessage());
+                    }
+                }
+            }else{
+                Log.i(TAG,outPut.toString());
+                config.principalToast.setText(R.string.api_error_get_paraformalidade);
+                config.principalToast.setDuration(Toast.LENGTH_LONG);
                 config.principalToast.show();
             }
         }

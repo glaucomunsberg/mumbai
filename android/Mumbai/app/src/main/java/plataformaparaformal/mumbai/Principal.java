@@ -67,7 +67,7 @@ public class Principal extends Fragment {
             mumbai.map.addMarker(new MarkerOptions().title("Pelotas").snippet("Princesa do Sul").position(pelotas));
             mumbai.map.setMyLocationEnabled(true);
             mumbai.map.moveCamera(CameraUpdateFactory.newLatLngZoom(pelotas,13));
-
+            mumbai.api.getParafromalByLocalization("-31.7267873","-52.3346216");
             /**
              * Set location as the atual
              */

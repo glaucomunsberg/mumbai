@@ -14,18 +14,18 @@ public class Paraformalidade {
     public int id;
 
 	public String imageURL;
-    public String shiftOccurrence;
-    public String registeredAmount;
+    public int shiftOccurrenceId;
+    public int registeredAmountId;
     public String geoLatitude;
     public String geoLongitude;
 	public String description;
 	public String link;
-	public String registeredActivity;
-	public String localizationSpace;
-	public String numberBody;
-	public String positionBody;
-	public String equipmentScale;
-	public String equipmentMobility;
+	public int registeredActivityId;
+	public int localizationSpaceId;
+	public int numberBodyId;
+	public int positionBodyId;
+	public int equipmentScaleId;
+	public int equipmentMobilityId;
 
 	public ArrayList<TypeBase> equipmentInstalations;
 	public ArrayList<TypeBase> senses;
@@ -38,22 +38,22 @@ public class Paraformalidade {
 
 	private ArrayList<TypeBase> authors;
 
-    public Paraformalidade(int id,String geoLatitude,String geoLongitude,String description,String link,String registeredActivity, String imageURL,String shiftOccurrence,String registeredAmount,String localizationSpace,String numberBody,String positionBody,String equipmentScale, String equipmentMobility, String dtRegistration){
+    public Paraformalidade(int id,String geoLatitude,String geoLongitude,String description,String link,int registeredActivityId, String imageURL,int shiftOccurrenceId,int registeredAmountId,int localizationSpaceId,int numberBodyId,int positionBodyId,int equipmentScaleId, int equipmentMobilityId, String dtRegistration){
 
         this.id = id;
         this.geoLatitude = geoLatitude;
         this.geoLongitude = geoLongitude;
         this.description = description;
         this.link = link;
-        this.registeredActivity = registeredActivity;
+        this.registeredActivityId = registeredActivityId;
         this.imageURL = imageURL;
-        this.shiftOccurrence=shiftOccurrence;
-        this.registeredAmount=registeredAmount;
-        this.localizationSpace = localizationSpace;
-        this.numberBody = numberBody;
-        this.positionBody = positionBody;
-        this.equipmentScale = equipmentScale;
-        this.equipmentMobility = equipmentMobility;
+        this.shiftOccurrenceId=shiftOccurrenceId;
+        this.registeredAmountId=registeredAmountId;
+        this.localizationSpaceId = localizationSpaceId;
+        this.numberBodyId = numberBodyId;
+        this.positionBodyId = positionBodyId;
+        this.equipmentScaleId = equipmentScaleId;
+        this.equipmentMobilityId = equipmentMobilityId;
 
         try{
             calendar.set(Calendar.YEAR, 2014);

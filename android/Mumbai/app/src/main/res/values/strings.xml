@@ -91,6 +91,7 @@
     <string name="api_error_login">Oops! Erro ao conectar usuário, tente mais tarde</string>
     <string name="api_error_login_id">Oops! Erro ao recuperar o ID do usuário, tente mais tarde</string>
     <string name="api_error_server">Oops! Um erro ocorreu no servidor, tente mais tarde</string>
+    <string name="api_error_get_paraformalidade">Não foi possível carregar as Paraformalidades</string>
     <string name="title_activity_account_facebook">AccountFacebook</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
