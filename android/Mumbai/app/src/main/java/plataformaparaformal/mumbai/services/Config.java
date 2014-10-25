@@ -86,9 +86,10 @@ public class Config {
         }
         isTheFirstTime = true;
         File arqBudapest = new File("/sdcard/"+dirFiles+budapestFile);
-        if( arqBudapest.isFile() && arqBudapest != null )
+        if( !arqBudapest.exists())
         {
             Budapest.getInstance().loadDataDefault();
+            Log.e(LOG_TAG, "Carregando database default not exists");
         }
         else
         {
@@ -96,7 +97,8 @@ public class Config {
                 saved = new ObjectInputStream( new FileInputStream( "/sdcard/"+dirFiles+budapestFile));
             } catch (IOException e) {
                 Budapest.getInstance().loadDataDefault();
-
+                Log.e(LOG_TAG, "Carregando database default");
+                e.printStackTrace();
             }
             Budapest budapestSaved = null;
             if(saved != null){
@@ -109,8 +111,13 @@ public class Config {
                     e.printStackTrace();
                     Budapest.getInstance().loadDataDefault();
                 }
-                if(budapestSaved != null)
+                if(budapestSaved != null){
                     Budapest.getInstance().loadDataFromFile(budapestSaved);
+                    Log.e(LOG_TAG, "Carregando databse arquivo");
+                }else{
+                    Log.e(LOG_TAG, "Carregando databse noops arquivo");
+                }
+
             }
         }
 
@@ -381,18 +388,26 @@ public class Config {
         return this.isTheFirstTime;
     }
 
-    public void saveBudapest(){
+    public boolean saveBudapest(){
         try {
-            toSave = new ObjectOutputStream( new FileOutputStream("/sdcard/"+dirFiles+budapestFile) );
+            toSave = new ObjectOutputStream( new FileOutputStream("/sdcard/"+dirFiles+budapestFile,false) );
+            Log.e("CONFIG","recuperado o arquivo para salvar budapest");
         } catch (IOException e) {
+            Log.e("CONFIG","erro recuperado o arquivo para salvar budapest");
             e.printStackTrace();
+            return false;
         }
         try {
+
             toSave.writeObject(Budapest.getInstance());
             toSave.flush();
+            Log.e("CONFIG","salvo arquivo para salvar budapest: number of scenes"+Budapest.getInstance().scenes.size());
         } catch (IOException e) {
             e.printStackTrace();
+            Log.e("CONFIG","erro ao salvar arquivo para salvar budapest");
+            return false;
         }
+        return true;
 
     }
 

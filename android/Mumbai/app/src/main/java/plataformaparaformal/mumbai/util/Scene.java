@@ -1,22 +1,26 @@
-package plataformaparaformal.mumbai.services;
+package plataformaparaformal.mumbai.util;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import plataformaparaformal.mumbai.R;
+import plataformaparaformal.mumbai.services.Mumbai;
+import plataformaparaformal.mumbai.util.Paraformalidade;
 
 /**
  * Created by glaucomunsberg on 10/25/14.
  */
-public class Scene {
+public class Scene implements Serializable {
 
-    int id;
+
     private String TAG = "SCENE";
     static final Mumbai mumbai = Mumbai.getInstance();
-    String geo_lat;
-    String geo_lng;
-    String description;
+    public int id;
+    public String geo_lat;
+    public String geo_lng;
+    public String description;
     ArrayList<Paraformalidade> paraformalidades;
 
     public Scene(int id, String description,String geo_lat, String geo_lng){
@@ -27,7 +31,6 @@ public class Scene {
         this.geo_lng        = geo_lng;
         this.description    = description;
 
-        mumbai.setNewScene(this.id,this.description,this.geo_lat,this.geo_lng);
     }
 
     public boolean setParaformalidades(int id,String geoLatitude,String geoLongitude,String description,int sceneId,String link,int registeredActivityId, String imageURL,int shiftOccurrenceId,int registeredAmountId,int localizationSpaceId,int numberBodyId,int positionBodyId,int equipmentScaleId, int equipmentMobilityId, String dtRegistration){

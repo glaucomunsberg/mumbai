@@ -6,6 +6,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import plataformaparaformal.mumbai.R;
+import plataformaparaformal.mumbai.util.Paraformalidade;
 
 public class Mumbai {
 
@@ -41,13 +42,15 @@ public class Mumbai {
         return instance;
     }
 
-    public boolean setNewScene(int id, String description, String lat_scene,String lng_scene){
-        Double lat = Double.parseDouble(lat_scene);
-        Double lng = Double.parseDouble(lng_scene);
-        LatLng tmp = new LatLng(lat,lng);
-        this.map.addMarker(new MarkerOptions().title(String.valueOf(R.string.scene_paraformalidade)).snippet(description).position(tmp));
-        this.map.setMyLocationEnabled(true);
-        this.map.moveCamera(CameraUpdateFactory.newLatLngZoom(tmp, 13));
+    public boolean showScenesBudapest(){
+        for (int i = 0; i < this.budapest.scenes.size(); i++) {
+            Double lat = Double.parseDouble(this.budapest.scenes.get(i).geo_lat);
+            Double lng = Double.parseDouble(this.budapest.scenes.get(i).geo_lng);
+            LatLng tmp = new LatLng(lat,lng);
+            this.map.addMarker(new MarkerOptions().title(String.valueOf(R.string.scene_paraformalidade)).snippet(this.budapest.scenes.get(i).description).position(tmp));
+            this.map.setMyLocationEnabled(true);
+            this.map.moveCamera(CameraUpdateFactory.newLatLngZoom(tmp, this.map.getCameraPosition().zoom));
+        }
         return true;
     }
 

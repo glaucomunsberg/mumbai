@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import plataformaparaformal.mumbai.services.Mumbai;
+
 
 public class Drawer extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -27,7 +29,7 @@ public class Drawer extends Activity
      */
     private CharSequence mTitle;
     private Principal principal;
-    private Edit edit;
+    private Mumbai mumbai = Mumbai.getInstance();
 
 
 
@@ -44,6 +46,7 @@ public class Drawer extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
     }
 
     @Override
@@ -177,5 +180,6 @@ public class Drawer extends Activity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
 
 }

@@ -7,7 +7,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.InflateException;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +66,7 @@ public class Principal extends Fragment {
 
             mumbai.map = map;
 
-            mumbai.api.getScenesByLocalization("-31.7267873","-52.3346216");
+            mumbai.api.getScenesByLocalization("-31.7267873", "-52.3346216");
             /**
              * Set location as the atual
              */
@@ -95,13 +97,15 @@ public class Principal extends Fragment {
 
                 }
             };
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
+            view.setFocusableInTouchMode(true);
+
+        }else{
+            map = mumbai.map;
         }
-
         return view;
 
     }
-
 
 }

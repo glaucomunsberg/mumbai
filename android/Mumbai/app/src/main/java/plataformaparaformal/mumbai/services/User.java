@@ -1,8 +1,7 @@
 package plataformaparaformal.mumbai.services;
 
 
-import android.util.Log;
-
+import plataformaparaformal.mumbai.util.Paraformalidade;
 import plataformaparaformal.mumbai.util.SocialNetwork;
 import plataformaparaformal.mumbai.util.TypeBase;
 

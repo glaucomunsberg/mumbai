@@ -116,6 +116,7 @@ public class API implements AsyncResponse {
         if("isOnAir".equals(method)){
             if(status == 200){
                 config.isOnAir = true;
+
                 config.principalToast.setText(R.string.api_is_on_air);
                 config.principalToast.setDuration(Toast.LENGTH_SHORT);
                 config.principalToast.show();
@@ -124,6 +125,7 @@ public class API implements AsyncResponse {
                 config.principalToast.setText(R.string.api_is_no_on_air);
                 config.principalToast.setDuration(Toast.LENGTH_SHORT);
                 config.principalToast.show();
+                mumbai.showScenesBudapest(); //Show scenes that is on budapest
             }
         }
 
@@ -190,21 +192,25 @@ public class API implements AsyncResponse {
                             scene_lng               = objects.getString("geo_longitude");
                             descripion              = objects.getString("descricao");
                             Log.i(TAG,"PROC: "+objects.toString());
-                            mumbai.setNewScene(scene_id,descripion,scene_lat,scene_lng);
+                            mumbai.budapest.setNewScene(scene_id,descripion,scene_lat,scene_lng);
                         } catch (JSONException E) {
                             Log.i(TAG, "Erro na iteração: " + E.getMessage());
                         }
                     }
+                    mumbai.config.saveBudapest();
+                    mumbai.showScenesBudapest();
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.i(TAG,"Erro no processamento: "+e.getMessage());
                 }
+
 
             }else{
                 Log.i(TAG,outPut.toString());
                 config.principalToast.setText(R.string.api_error_get_scenes);
                 config.principalToast.setDuration(Toast.LENGTH_LONG);
                 config.principalToast.show();
+                mumbai.showScenesBudapest();
             }
         }
 

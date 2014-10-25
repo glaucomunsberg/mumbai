@@ -1,12 +1,14 @@
-package plataformaparaformal.mumbai.services;
+package plataformaparaformal.mumbai.util;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import plataformaparaformal.mumbai.services.API;
 import plataformaparaformal.mumbai.util.TypeBase;
 
-public class Paraformalidade {
+public class Paraformalidade implements Serializable {
 
     private static API api = API.getInstance();
     private static Calendar calendar = Calendar.getInstance();

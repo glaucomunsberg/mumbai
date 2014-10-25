@@ -1,8 +1,11 @@
 package plataformaparaformal.mumbai.services;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import plataformaparaformal.mumbai.util.Scene;
 import plataformaparaformal.mumbai.util.TypeBase;
 
 /**
@@ -11,7 +14,7 @@ import plataformaparaformal.mumbai.util.TypeBase;
 public class Budapest implements Serializable {
 
     private static volatile Budapest instance = null;
-
+    private static String LOG_TAG = "BUDAPEST";
     public ArrayList<TypeBase> authors;
     public ArrayList<Scene> scenes;
 
@@ -82,7 +85,7 @@ public class Budapest implements Serializable {
         return -1;
     }
 
-    public boolean setScenes(int id, String description,String geo_lat, String geo_lng){
+    public boolean setNewScene(int id, String description,String geo_lat, String geo_lng){
         for (int i = 0; i < scenes.size(); i++) {
             if(scenes.get(i).id == id ){
                 return false;
@@ -96,6 +99,7 @@ public class Budapest implements Serializable {
 
 
     public void loadDataDefault(){
+        Log.e(LOG_TAG, "Carregando database default");
         senses = new ArrayList<TypeBase>();
         senses.add(new TypeBase("Tato",1));
         senses.add(new TypeBase("Cheiro",2));
@@ -167,10 +171,14 @@ public class Budapest implements Serializable {
         environmentalConditions.add(new TypeBase("Natureza",4));
         environmentalConditions.add(new TypeBase("Piso para Apoio",5));
         environmentalConditions.add(new TypeBase("Parede para Apoio",6));
+
+        scenes = new ArrayList<Scene>();
     }
 
     public void loadDataFromFile(Budapest budapest){
+        Log.e(LOG_TAG, "Carregando database de Arquivo");
         this.environmentalConditions    = budapest.environmentalConditions;
+        Log.e(LOG_TAG, "environmentalConditions  recupered:"+budapest.environmentalConditions.size());
         this.registeredActivities       = budapest.registeredActivities;
         this.shifts                     = budapest.shifts;
         this.climates                   = budapest.climates;
@@ -182,6 +190,8 @@ public class Budapest implements Serializable {
         this.positionBodies             = budapest.positionBodies;
         this.senses                     = budapest.senses;
         this.registeredAmounts          = budapest.registeredAmounts;
+        this.scenes                     = budapest.scenes;
+        Log.e(LOG_TAG, "scenes recupered:"+budapest.scenes.size());
     }
 
 }
