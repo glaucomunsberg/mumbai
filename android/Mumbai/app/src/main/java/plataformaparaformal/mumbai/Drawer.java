@@ -65,14 +65,18 @@ public class Drawer extends Activity
                 fragment = see;
                 break;
             case 2:
+                Detail detail = new Detail();
+                fragment = detail;
+                break;
+            case 3:
                 Search search = new Search();
                 fragment = search;
                 break;
-            case 3:
+            case 4:
                 Settings settings = new Settings();
                 fragment = settings;
                 break;
-            case 4:
+            case 5:
                 About about = new About();
                 fragment = about;
                 break;

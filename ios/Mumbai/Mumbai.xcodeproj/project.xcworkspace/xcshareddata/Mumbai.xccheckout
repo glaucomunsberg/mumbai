@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1A35B78F-F96F-46AC-A71F-BCC6E4F09755</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Mumbai</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CD6A454826DA2D88C4838A343B9AAE764E6ADDCE</key>
+		<string>https://github.com/glaucomunsberg/mumbai.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ios/Mumbai/Mumbai.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CD6A454826DA2D88C4838A343B9AAE764E6ADDCE</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/glaucomunsberg/mumbai.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CD6A454826DA2D88C4838A343B9AAE764E6ADDCE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CD6A454826DA2D88C4838A343B9AAE764E6ADDCE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>mumbai</string>
+		</dict>
+	</array>
+</dict>
+</plist>

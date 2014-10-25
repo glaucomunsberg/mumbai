@@ -63,11 +63,8 @@ public class Principal extends Fragment {
             map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
             mumbai.map = map;
-            LatLng pelotas = new LatLng(-31.7267873,-52.3346216);
-            mumbai.map.addMarker(new MarkerOptions().title("Pelotas").snippet("Princesa do Sul").position(pelotas));
-            mumbai.map.setMyLocationEnabled(true);
-            mumbai.map.moveCamera(CameraUpdateFactory.newLatLngZoom(pelotas,13));
-            mumbai.api.getParafromalByLocalization("-31.7267873","-52.3346216");
+
+            mumbai.api.getScenesByLocalization("-31.7267873","-52.3346216");
             /**
              * Set location as the atual
              */
@@ -75,8 +72,12 @@ public class Principal extends Fragment {
             LocationListener locationListener = new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
-                    mumbai.map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),13));
-                    mumbai.user.setLastLocalization(location.getLatitude(),location.getLongitude());
+                    if(!mumbai.config.isTheCameraPositionFixed){
+                        mumbai.config.isTheCameraPositionFixed = true;
+                        mumbai.map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),13));
+                        mumbai.user.setLastLocalization(location.getLatitude(),location.getLongitude());
+                    }
+
                 }
 
                 @Override

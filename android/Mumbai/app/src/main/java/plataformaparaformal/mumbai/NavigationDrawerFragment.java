@@ -104,6 +104,7 @@ public class NavigationDrawerFragment extends Fragment {
                 new String[]{
                         getString(R.string.menu_paraformalidades),
                         getString(R.string.menu_create),
+                        getString(R.string.menu_detail),
                         getString(R.string.menu_search),
                         getString(R.string.menu_configuration),
                         getString(R.string.menu_about)

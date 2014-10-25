@@ -13,7 +13,7 @@ public class Budapest implements Serializable {
     private static volatile Budapest instance = null;
 
     public ArrayList<TypeBase> authors;
-    public ArrayList<TypeBase> scenes;
+    public ArrayList<Scene> scenes;
 
     public ArrayList<TypeBase> climates;
     public ArrayList<TypeBase> environmentalConditions;
@@ -27,7 +27,7 @@ public class Budapest implements Serializable {
     public ArrayList<TypeBase> registeredAmounts;
     public ArrayList<TypeBase> senses;
     public ArrayList<TypeBase> shifts;
-    public ArrayList<Paraformalidade> paraformalidades;
+
 
     public Budapest(){
 
@@ -82,17 +82,17 @@ public class Budapest implements Serializable {
         return -1;
     }
 
-    public boolean setParaformalidades(int id,String geoLatitude,String geoLongitude,String description,String link,int registeredActivityId, String imageURL,int shiftOccurrenceId,int registeredAmountId,int localizationSpaceId,int numberBodyId,int positionBodyId,int equipmentScaleId, int equipmentMobilityId, String dtRegistration){
-
-        for (int i = 0; i < paraformalidades.size(); i++) {
-            if(paraformalidades.get(i).id == id ){
+    public boolean setScenes(int id, String description,String geo_lat, String geo_lng){
+        for (int i = 0; i < scenes.size(); i++) {
+            if(scenes.get(i).id == id ){
                 return false;
             }
         }
 
-        paraformalidades.add(new Paraformalidade(id,geoLatitude,geoLongitude,description,link,registeredActivityId,imageURL,shiftOccurrenceId,registeredAmountId,localizationSpaceId,numberBodyId,positionBodyId,equipmentScaleId,equipmentMobilityId,dtRegistration));
+        scenes.add(new Scene(id,description,geo_lat,geo_lng));
         return true;
     }
+
 
 
     public void loadDataDefault(){

@@ -49,12 +49,14 @@ public class Config {
 	public boolean seeFullImage;
     public boolean isOnAir;
     public boolean isTheFirstTime;
+    public boolean isTheCameraPositionFixed;
     public boolean SyncOnServerSometime;
     public boolean DataToSend;
 
     private Config(){
 
         Log.e(LOG_TAG, "Carregando configuracoes");
+        isTheCameraPositionFixed = false;
         if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             file=new File(Environment.getExternalStorageDirectory(),dirFiles);
             file.mkdirs();

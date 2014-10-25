@@ -22,6 +22,7 @@ public class API implements AsyncResponse {
 
     private static volatile API instance = null;
     private String TAG = "API";
+    private static final Mumbai mumbai = Mumbai.getInstance();
     private static final Config config = Config.getInstance();
     private static User user = User.getInstance();
 
@@ -52,9 +53,16 @@ public class API implements AsyncResponse {
 		return false;
 	}
 
+    //Never used
     public boolean getParafromalByLocalization(String lat, String lng){
         String serverURL = "http://"+config.urlBaseAPI+":"+config.portAPI+"/api/paraformalidadeByLocalization?lat="+lat+"&lng="+lng;
         new Operator(this,"paraformalidadeByLocalization").execute(serverURL);
+        return false;
+    }
+
+    public boolean getScenesByLocalization(String lat, String lng){
+        String serverURL = "http://"+config.urlBaseAPI+":"+config.portAPI+"/api/scenesByLocalization?lat="+lat+"&lng="+lng;
+        new Operator(this,"scenesByLocalization").execute(serverURL);
         return false;
     }
 
@@ -163,6 +171,44 @@ public class API implements AsyncResponse {
             }
         }
 
+        if("scenesByLocalization".equals(method)){
+            if(status == 200){
+                Log.i(TAG,outPut.toString());
+                JSONArray getArray = null;
+                try {
+                    getArray = outPut.getJSONArray("response");
+                    int scene_id;
+                    String scene_lat;
+                    String scene_lng;
+                    String descripion;
+                    for(int i = 0; i < getArray.length(); i++)
+                    {
+                        try {
+                            JSONObject objects      = getArray.getJSONObject(i);
+                            scene_id                = objects.getInt("id");
+                            scene_lat               = objects.getString("geo_latitude");
+                            scene_lng               = objects.getString("geo_longitude");
+                            descripion              = objects.getString("descricao");
+                            Log.i(TAG,"PROC: "+objects.toString());
+                            mumbai.setNewScene(scene_id,descripion,scene_lat,scene_lng);
+                        } catch (JSONException E) {
+                            Log.i(TAG, "Erro na iteração: " + E.getMessage());
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.i(TAG,"Erro no processamento: "+e.getMessage());
+                }
+
+            }else{
+                Log.i(TAG,outPut.toString());
+                config.principalToast.setText(R.string.api_error_get_scenes);
+                config.principalToast.setDuration(Toast.LENGTH_LONG);
+                config.principalToast.show();
+            }
+        }
+
+
         if("paraformalidadeByLocalization".equals(method)){
             if(status == 200){
                 Log.i(TAG,outPut.toString());
@@ -194,7 +240,7 @@ public class API implements AsyncResponse {
                 for(int i = 0; i < getArray.length(); i++)
                 {
                     try {
-                        JSONObject objects = getArray.getJSONObject(i);
+                        JSONObject objects      = getArray.getJSONObject(i);
                         id                      = objects.getInt("id");
                         lnt                     = objects.getString("geo_longitude");
                         lat                     = objects.getString("geo_latitude");
